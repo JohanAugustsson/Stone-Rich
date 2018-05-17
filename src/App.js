@@ -3,7 +3,7 @@ import './App.css';
 import productlist from "./mocks/products.json";
 import Products from "./containers/products/products";
 import Customer from "./containers/customer-page/customer";
-import Menubasket from "./components/menubasket/menubasket";
+import Menu from "./components/menu/menu";
 import Admin from "./containers/admin/admin";
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Menubasket />
+        <Menu/>
         <Products />
         <Customer/>
         <Admin/>
