@@ -1,5 +1,5 @@
 import React, {Component}from "react";
-import style from "./products.css";
+import "./products.css";
 // import productlist from "./mocks/products.json";
 
 const products = () =>{
