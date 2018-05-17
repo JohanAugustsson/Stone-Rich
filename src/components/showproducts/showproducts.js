@@ -1,14 +1,28 @@
 import React, {Component} from "react";
+import propTypes from "prop-types";
 import "./showproducts.css";
-const showProducts = () => {
-    return (<div class="component showproducts-container">
-        <div><h1>Product-List-Here</h1></div>
-        <div><ul>
-            <li>Item1</li>
-            <li>Item2</li>
-            <li>Item3</li>
-        </ul>
-        </div>
-    </div>)
+class showProducts extends Component {
+    componentDidMount() {}
+
+    render() {
+        const products = [...this.props.productList];
+        const productList = products.map(product => <li key={product.id}>{product.name}</li>)
+
+        return (<div className="component showproducts-container">
+            <div>
+                <h1>Product-List-Component</h1>
+            </div>
+            <div>
+                <ul>
+                    {productList}
+                </ul>
+            </div>
+        </div>)
+    }
+}
+
+// Defining proptypes for this component
+showProducts.propTypes = {
+    productList: propTypes.array
 }
 export default showProducts;
