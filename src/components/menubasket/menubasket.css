@@ -1,0 +1,8 @@
+.menubasket-container{
+  display: flex;
+  justify-content:center;
+}
+.menubasket-logo-container{
+  display:flex;
+  align-items: center;
+}
