@@ -1,0 +1,13 @@
+.menu-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-container div:nth-child(2){
+  display: flex;
+  align-items: center;
+}
+.menu-container div:nth-child(2) div{
+  border: 1px solid red;
+}
