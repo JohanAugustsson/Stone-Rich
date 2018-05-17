@@ -1,7 +1,11 @@
 import React, {Component} from "react";
-import  "./menubasket.css";
+import "./menubasket.css";
 const menuBasket = () => {
     return (<div className="component menubasket-container">
+        <div>
+        <h1>Menubasket-Component</h1>
+    </div>
+    <div>
         <div>
             <p>Kundvagn</p>
         </div>
@@ -9,6 +13,7 @@ const menuBasket = () => {
         <div>
             <p>(0)</p>
         </div>
-    </div>)
+    </div>
+</div>)
 }
 export default menuBasket;

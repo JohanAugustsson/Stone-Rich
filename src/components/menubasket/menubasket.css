@@ -1,8 +1,14 @@
 .menubasket-container{
   display: flex;
   justify-content:center;
+  flex-direction: column;
+  align-items: center;
 }
 .menubasket-logo-container{
   display:flex;
   align-items: center;
+}
+.menubasket-container div:nth-child(2){
+  display: flex;
+  justify-content:center;
 }
