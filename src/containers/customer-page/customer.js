@@ -3,6 +3,11 @@ import React , {Component} from "react";
 import "./customer.css";
 
 const customer = () =>{
-  return(<div className="component customer-container"><h1>Customer-Container</h1></div>);
+  return(<div className="component customer-container">
+            <h1>Din Varukorg</h1>
+            <div className='coosen-products-container'>
+
+            </div>
+        </div>);
 }
 export default customer;

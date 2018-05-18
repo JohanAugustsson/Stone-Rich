@@ -1,18 +1,20 @@
-body,  body *{
+body, body * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-body{
+
+body {
   height: 130vh;
 }
 
-h1,h2,h3{
-  font-family: Verdana, Geneva, sans-serif;
-  color:#232323;
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #232323;
 }
-p{
-  font-family: arial,sans-serif;
+
+p {
+  font-family: 'Open Sans', sans-serif;
 }
