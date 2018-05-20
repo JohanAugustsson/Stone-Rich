@@ -3,3 +3,19 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+.showproducts-container .wrapper-products ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.showproducts-container .wrapper-products li {
+  list-style: none;
+  min-width: 200px;
+  max-width: 200px;
+  height: 200px;
+
+
+}
