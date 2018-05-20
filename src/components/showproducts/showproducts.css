@@ -24,6 +24,7 @@
   margin: 10px;
   border-radius: 5px;
   background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -62,7 +63,8 @@
   display: flex;
   margin: 10px;
   align-items: center;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  /* line-height: 3em; */
 
 }
 .showproducts-container .wrapper-products li div:nth-child(3) span{
