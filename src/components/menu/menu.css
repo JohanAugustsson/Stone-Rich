@@ -3,7 +3,7 @@
   width: 100%;
   top: 0px;
   background-color: #fff;
-  z-index: 1;
+  z-index: 999;
   display: flex;
   flex-direction: row;
   align-items: center;
