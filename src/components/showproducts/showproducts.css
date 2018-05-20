@@ -3,19 +3,79 @@
   flex-direction: column;
   align-items: center;
 }
-
+.showproducts-container button:hover {
+  cursor: pointer;
+}
 
 .showproducts-container .wrapper-products ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: snow;
 }
 
 .showproducts-container .wrapper-products li {
+  display: flex;
+  flex-direction: column;
   list-style: none;
-  min-width: 200px;
-  max-width: 200px;
-  height: 200px;
+  min-width: 300px;
+  max-width: 300px;
+  height: 350px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+
+}
+
+.showproducts-container .wrapper-products li:hover img {
+  transform: scale(1.25);
+}
+.showproducts-container .wrapper-products li:hover {
+  cursor: pointer;
+}
+
+.showproducts-container .wrapper-products img {
+  width: 50%;
+  height: auto;
+  transition: transform .25s ease;
+
+}
+
+.showproducts-container .wrapper-products li div:nth-child(1) {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 4;
+}
+
+.showproducts-container .wrapper-products li div:nth-child(2) {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1em;
+  z-index: 50;
+}
 
 
+
+.showproducts-container .wrapper-products li div:nth-child(3) {
+  flex: 1;
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  font-size: 1.2em;
+
+}
+.showproducts-container .wrapper-products li div:nth-child(3) span{
+  flex: 4;
+  padding: 5px;
+  font-size: 1.2em;
+}
+.showproducts-container .wrapper-products li div:nth-child(3) button{
+  flex: 3;
+  padding: 10px;
+  margin: 10px;
+  font-size: 18px;
+  background-color: #5FB92B;
+  color: white;
+  border-radius: 5px;
 }

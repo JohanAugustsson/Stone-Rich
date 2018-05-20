@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import propTypes from "prop-types";
 import "./showproducts.css";
+import 'font-awesome/css/font-awesome.min.css';
 
 
 class showProducts extends Component {
@@ -10,7 +11,20 @@ class showProducts extends Component {
 
     makeProductUl = (products) => {
       const newProductsList =  products.map( product => {
-        return <li key={product.id}>{product.name}</li>
+        return (
+          <li key={product.id}>
+            <div>
+              <img src={product.img} alt ="produkt bild" titel="ädelsten" />
+            </div>
+            <div>
+              {product.name}
+            </div>
+            <div>
+              <span>{ product.price }kr</span>
+              <button onClick={ () => console.log("köp för fn :)" )}>Köp <i className="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
+            </div>
+          </li>
+        )
       })
 
       return (<ul> { newProductsList } </ul>)
@@ -23,9 +37,6 @@ class showProducts extends Component {
 
         return (
           <div className="component showproducts-container">
-            <div>
-              <h1>Product-List-Component</h1>
-            </div>
             <div className="wrapper-products">
               {productList}
             </div>
