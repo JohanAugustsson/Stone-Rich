@@ -4,7 +4,7 @@
     "id" : 0,
     "name" : "Ametist slipad platta",
     "price" : 95,
-    "img" : "./public/img/stones/ametist.png",
+    "img" : "img/stones/ametist.png",
     "numberinstore" : 18,
     "productinfo" : "Stenen är ca 8-10 x 35-45 mm. Ametist av god kvalité. Finns att köpa som set med andra stenar i Chakrabalansering i brokadpåse."
   },
@@ -12,7 +12,7 @@
     "id" : 1,
     "name" : "Ametistkula",
     "price" : 180,
-    "img" : "./public/img/stones/ametistkulor.jpg",
+    "img" : "img/stones/ametistkulor.jpg",
     "numberinstore" : 9,
     "productinfo" : "Små söta ametistkulor, ljuslila och genomskinliga. Finns i storlek extra liten, liten, mellan och stor. "
   },
@@ -20,7 +20,7 @@
     "id" : 2,
     "name" : "Aventurin slipad platta",
     "price" : 30,
-    "img" : "./public/img/stones/aventurin.png",
+    "img" : "img/stones/aventurin.png",
     "numberinstore" : 7,
     "productinfo" : "Stenen är ca 8-10 x 35-45 mm. Aventurin av god kvalité. Finns att köpa som set med andra stenar i Chakrabalansering i brokadpåse."
   },
@@ -28,7 +28,7 @@
     "id" : 3,
     "name" : "Bergkristallskalle vanlig kvalitet",
     "price" : 560,
-    "img" : "./public/img/stones/bergkristallskalle.jpg",
+    "img" : "img/stones/bergkristallskalle.jpg",
     "numberinstore" : 5,
     "productinfo" : "Bergkristallskalle i vanlig kvalitet, ganska klar och med mer eller mindre inklusioner. Bergkristallskallar kan programmeras, hålla kunskap och kommunicera med andra kristallskallar."
   },
@@ -36,7 +36,7 @@
     "id" : 4,
     "name" : "Hjärta bulligt i olika ädelstenar",
     "price" : 95,
-    "img" : "./public/img/stones/hjärta.jpg",
+    "img" : "img/stones/hjärta.jpg",
     "numberinstore" : 16,
     "productinfo" : "Finns i olika stensorter Ca 45 mm breda. Lagom att hålla i handen"
   },
@@ -44,7 +44,7 @@
     "id" : 5,
     "name" : "Selenitplattor bulliga och ovala",
     "price" : 75,
-    "img" : "./public/img/stones/selenitplattor.jpg",
+    "img" : "img/stones/selenitplattor.jpg",
     "numberinstore" : 12,
     "productinfo" : "Slipad Selenit platta, bullig oval,finns vit skimmrande ca 65-70 mm. Kallas också 'Happy stone'."
   },
@@ -52,7 +52,7 @@
     "id" : 6,
     "name" : "Jordgubbskvarts ägg",
     "price" : 120,
-    "img" : "./public/img/stones/jordgubbskvarts.jpg",
+    "img" : "img/stones/jordgubbskvarts.jpg",
     "numberinstore" : 14,
     "productinfo" : "Ägg i många olika stensorter. Ägget är fruktbarhetssymbolen som visar den jordiska naturens skapelse."
   },
@@ -60,7 +60,7 @@
     "id" : 7,
     "name" : "Karneol handpolerad från Madagaskar",
     "price" : 120,
-    "img" : "./public/img/stones/karneol.jpg",
+    "img" : "img/stones/karneol.jpg",
     "numberinstore" : 7,
     "productinfo" : "Härligt mustig orange brun handpolerad karneol från Madagaskar. Finns i blandade storlekar."
   },
@@ -68,7 +68,7 @@
     "id" : 8,
     "name" : "Malakitkrysokolla liten handpolerad från Kongo",
     "price" : 100,
-    "img" : "./public/img/stones/malakitkrysokolla.jpg",
+    "img" : "img/stones/malakitkrysokolla.jpg",
     "numberinstore" : 5,
     "productinfo" : "Naturlig mix av malakit och krysokolla, handpolerad från Kongo. Vänligen observera att varje sten är unik och kan därför särskilja sig något från de på bilden!"
   },
@@ -76,7 +76,7 @@
     "id" : 9,
     "name" : "Onyx slipad platta",
     "price" : 70,
-    "img" : "./public/img/stones/onyx.jpg",
+    "img" : "img/stones/onyx.jpg",
     "numberinstore" : 11,
     "productinfo" : "Stenen är ca 8-10 x 35-45 mm. Onyx av god kvalité."
   }

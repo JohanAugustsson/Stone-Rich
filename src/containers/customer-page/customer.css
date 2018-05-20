@@ -1,4 +1,126 @@
 .customer-container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  background-color: #f4f4f4;
+}
+
+.customer-container>h1{
+  width: 80%;
+  color: #606060;
+  font-weight: lighter;
+  min-width: 320px;
+  border-bottom: 1px solid #606060;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.chosen-products-container{
+  width: 80%;
+  min-width: 320px;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.product-number-sum{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #707070;
+  padding: 0 0.5rem;
+}
+.product-number-sum>span{
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
+.chosen-article-object{
+  margin-top: 1rem;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 0 0.5rem;
+
+  border-bottom: 1px solid #606060;
+  padding-bottom: 0.5rem;
+}
+
+.img-name-instore{
+  display: flex;
+}
+.img-name-instore>div:last-child{
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.img-name-instore .isInStore{
+  color: green;
+}
+.img-name-instore>.product-img-container{
+  width: 70px;
+}
+.img-name-instore>.product-img-container>img{
+  width: 100%;
+}
+.amount-minus-plus{
+  width: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+}
+.amount-minus-plus>input{
+  padding: 3px;
+  width: 30px;
+  text-align: center;
+
+}
+.amount-minus-plus>button{
+  width: 15px;
+  height: 15px;
+
+}
+.totalsum{
+  margin-top: 4rem;
+  width: 90%;
+  text-align: right;
+  padding-bottom: 0.5rem;
+
+}
+.totalsum>h3>span{
+  margin-left: 3rem;
+}
+
+.pay-or-emty-basket{
+  margin-top: 2rem;
+  width: 90%;
+  display:flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+.pay-or-emty-basket>button{
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 2rem;
+}
+.pay-or-emty-basket>button:first-child{
+  background-color: red;
+}
+.pay-or-emty-basket>button:last-child{
+  background-color: green;
 }
