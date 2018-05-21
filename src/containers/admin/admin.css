@@ -82,12 +82,23 @@
   justify-content: space-between;
 }
 
+.img-info-product-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 30%;
+  min-width: 150px;
+}
 .admin-product-img-container{
   width: 70px;
+  min-width: 70px;
+  max-width: 70px;
 }
 
 .admin-product-img-container>img{
   width: 100%;
+
 }
 
 
@@ -96,10 +107,115 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.img-info-instore-price-status .antal-price{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  width: 30%;
+  min-width: 150px;
+  margin: 0 1rem;
+
+}
+.img-info-instore-price-status .antal-price>div{
+  text-align: center;
+}
+.img-info-instore-price-status .mini-header{
+  margin-bottom: 1rem;
+  color: #606060;
+
+}
+.img-info-instore-price-status .antal-price>div:first-child{
+  margin-right: 1rem;
+}
+
+.img-info-instore-price-status .status{
+    margin-left: 1rem;
+   width: 20%;
+   min-width: 120px;
 }
 
 
-.img-info-instore-price-status>.info-container{
-  border-right: 1px solid #606060;
+/* change object css */
+.admin-change-article-object{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 90%;
+  height: 300px;
   padding: 0 0.5rem;
+
+  border-bottom: 1px solid #606060;
+  padding-bottom: 0.5rem;
+}
+.change-img-info-instore-price-status{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.change-img-info-instore-price-status>div{
+  width: 25%;
+}
+.admin-change-product-img-container{
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+
+}
+.admin-change-product-img-container>img{
+  width: 100%;
+}
+.admin-change-article-object .change-img-info-product-container{
+  display: flex;
+  width: 50%;
+  justify-content: flex;
+}
+.change-img-info-instore-price-status .change-antal-price{
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media all and (max-width: 800px) {
+
+  .img-info-instore-price-status{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  .img-info-instore-price-status .antal-price,
+  .img-info-instore-price-status .status,
+  .img-info-instore-price-status .img-info-product-container{
+    margin: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #808080;
+    width: 100%;
+  }
+  .img-info-instore-price-status .antal-price{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .img-info-instore-price-status .antal-price>div>p{
+    text-align: left;
+  }
+  .img-info-instore-price-status .antal-price>div:first-child{
+      width: 100%;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #808080;
+  }
+  .img-info-product-container{
+    justify-content: flex-start;
+  }
+
+  .admin-article-object{
+    border: none;
+  }
 }

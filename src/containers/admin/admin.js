@@ -48,24 +48,68 @@ const admin = () =>{
                         <p>Ändra</p>
                       </div>
                       <div className='img-info-instore-price-status'>
-                            <div className='admin-product-img-container'>
-                              <img src='img/stones/ametist.png' alt='product bild' title='ädelsten'/>
+                            <div className='img-info-product-container'>
+                              <div className='admin-product-img-container'>
+                                <img src='img/stones/ametist.png' alt='product bild' title='ädelsten'/>
+                              </div>
+                              <div className='info-product'>
+                                <p className='mini-header'>Produkt info</p>
+                                <p>namn på sten</p>
+                              </div>
                             </div>
-                            <div className='info-container'>
-                              <p>Produkt info</p>
-                              <p>namn på sten</p>
+
+                            <div className='antal-price'>
+                              <div>
+                                <p className='mini-header'>Antal på lager</p>
+                                <p>1</p>
+                              </div>
+                              <div>
+                                <p className='mini-header'>pris</p>
+                                <p>19kr</p>
+                              </div>
                             </div>
-                            <div className='info-container'>
-                              <p>Antal på lager</p>
-                              <p>1</p>
-                            </div>
-                            <div className='info-container'>
-                              <p>pris</p>
-                              <p>19kr</p>
-                            </div>
-                            <div className='info-container'>
-                              <p>Status</p>
+
+                            <div className='status'>
+                              <p className='mini-header'>Status</p>
                               <p>Finns på lager</p>
+                            </div>
+                      </div>
+                  </div>
+
+                  <div className='admin-article-object'>
+                      <div className='id-changeButton'>
+                        <h3>id: 1</h3>
+                        <p>Spara</p>
+                      </div>
+                      <div className='img-info-instore-price-status'>
+                            <div className='img-info-product-container'>
+                              <div className='admin-product-img-container'>
+                                <img src='img/stones/ametist.png' alt='product bild' title='ädelsten'/>
+                                <input onChange={(e)=>console.log(e.target.value)} type='text' value='img/stones/ametist.png'/>
+                              </div>
+                              <div className='info-product'>
+                                <p className='mini-header'>Produkt info</p>
+                                <textarea value='' onChange={(e)=>console.log(e.target.value)}>namn på sten</textarea>
+                              </div>
+                            </div>
+
+                            <div className='antal-price'>
+                              <div>
+                                <p className='mini-header'>Antal på lager</p>
+                                <input onChange={(e)=>console.log(e.target.value)} type='text' value='1'/>
+                              </div>
+                              <div>
+                                <p className='mini-header'>pris</p>
+                                <input onChange={(e)=>console.log(e.target.value)} type='text' value='19'/> <span>kr</span>
+                              </div>
+                            </div>
+
+                            <div className='status'>
+                              <p className='mini-header'>Status</p>
+                              <select>
+                                    <option onChange={(e)=>console.log(e.target.value)} value="finns på lager">finns på lager</option>
+                                    <option onChange={(e)=>console.log(e.target.value)} value="slutsållt">Saab</option>
+                              </select>
                             </div>
                       </div>
                   </div>
