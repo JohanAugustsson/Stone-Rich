@@ -2,11 +2,18 @@ import React, {Component} from "react";
 import propTypes from "prop-types";
 import "./showproducts.css";
 import 'font-awesome/css/font-awesome.min.css';
-
+import { connect } from 'react-redux';
+import { addToBasket } from '../../actions/actions.js'
 
 class showProducts extends Component {
     componentDidMount() {
 
+    }
+
+    handleClickAddToBasket = (id) => {
+      let action = addToBasket(1,id);
+      console.log(action);
+      this.props.dispatch(action);
     }
 
     makeProductUl = (products) => {
@@ -21,7 +28,7 @@ class showProducts extends Component {
             </div>
             <div>
               <span>{ product.price }kr</span>
-              <button onClick={ () => console.log("köp för fn :)" )}>Köp <i className="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
+              <button onClick={ () => this.handleClickAddToBasket(product.id) }>Köp <i className="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
             </div>
           </li>
         )
@@ -31,8 +38,12 @@ class showProducts extends Component {
     }
 
     render() {
-        const products = this.props.productList;
-        let productList = this.makeProductUl(products);
+        const products = this.props.products;
+        console.log("props i showProducts: ",this.props);
+        let productList = "empty"
+        console.log("producker från props: ", products);
+        if(products.length > 0)
+          productList = this.makeProductUl(products);
 
 
         return (
@@ -49,4 +60,12 @@ class showProducts extends Component {
 showProducts.propTypes = {
     productList: propTypes.array
 }
-export default showProducts;
+
+
+let mapStateToProps = state => {
+  return {
+    products : state.products
+  }
+}
+
+export default connect(mapStateToProps)(showProducts);
