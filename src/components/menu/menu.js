@@ -26,7 +26,6 @@ class Menu extends React.Component {
 
   handleClickChangePage = (page) => {
     let action = changePage(page);
-    console.log(action);
     this.props.dispatch(action);
 
   }

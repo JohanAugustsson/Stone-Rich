@@ -58,6 +58,13 @@ class customer extends Component {
     }
 
     handleClickEmptyYourBasket = () =>{
+      let basket = this.props.basket;
+
+      basket.forEach( product => { // lägger tillbaka alla till storen
+        let action = addBackToNumberInStore(product.numberInBasket, product.id)
+        this.props.dispatch(action);
+      })
+
       let actionEmpty = emptyBasket();
       this.props.dispatch(actionEmpty);
     }
