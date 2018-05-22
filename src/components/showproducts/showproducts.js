@@ -24,14 +24,14 @@ class showProducts extends Component {
 
     handleClickAddToBasket = (id, products) => {
 
-        if (this.isProductsInStore(this.props.products, id)) {
+        if (this.isProductsInStore(products, id)) {
             let action1 = addToBasket(1, id);
             let action2 = removeFromNumberInstore(1, id);
             this.props.dispatch(action1);
             this.props.dispatch(action2);
         }
+      }
 
-    }
 
     makeProductUl = (products) => {
         const newProductsList = products.map(product => {
