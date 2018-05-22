@@ -1,4 +1,221 @@
 .admin-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    background-color: #f4f4f4;
+
+}
+.admin-container>h1{
+  width: 80%;
+  color: #606060;
+  font-weight: lighter;
+  min-width: 320px;
+  border-bottom: 1px solid #606060;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.admin-container>.admin-button-container{
+  width: 80%;
+  min-width: 320px;
+  margin: 1rem 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+.admin-container>.admin-button-container>button{
+  width: 50%;
+  border: none;
+  background-color: #909090;
+  padding: 0.5rem;
+  color: #fff;
+  font-weight: bold;
+  /* border-radius: 5px 0 0 5px */
+}
+.admin-button-container>button:first-child{
+  border-radius: 5px 0 0 5px;
+}
+.admin-button-container>button:last-child{
+  border-radius: 0 5px 5px 0;
+}
+.admin-container>.admin-button-container>.admin-chosen-category{
+  background-color: #606060;
+}
+
+
+
+.admin-products-container{
+  width: 80%;
+  min-width: 320px;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.admin-instore{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #707070;
+  padding: 0 0.5rem;
+}
+
+.admin-article-object{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 90%;
+  padding: 0 0.5rem;
+
+  border-bottom: 1px solid #606060;
+  padding-bottom: 0.5rem;
+}
+
+.id-changeButton{
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-info-product-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 30%;
+  min-width: 150px;
+}
+.admin-product-img-container{
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+}
+
+.admin-product-img-container>img{
+  width: 100%;
+
+}
+
+
+.img-info-instore-price-status{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.img-info-instore-price-status .antal-price{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  width: 30%;
+  min-width: 150px;
+  margin: 0 1rem;
+
+}
+.img-info-instore-price-status .antal-price>div{
+  text-align: center;
+}
+.img-info-instore-price-status .mini-header{
+  margin-bottom: 1rem;
+  color: #606060;
+
+}
+.img-info-instore-price-status .antal-price>div:first-child{
+  margin-right: 1rem;
+}
+
+.img-info-instore-price-status .status{
+    margin-left: 1rem;
+   width: 20%;
+   min-width: 120px;
+}
+
+
+/* change object css */
+.admin-change-article-object{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 90%;
+  height: 300px;
+  padding: 0 0.5rem;
+
+  border-bottom: 1px solid #606060;
+  padding-bottom: 0.5rem;
+}
+.change-img-info-instore-price-status{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.change-img-info-instore-price-status>div{
+  width: 25%;
+}
+.admin-change-product-img-container{
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+
+}
+.admin-change-product-img-container>img{
+  width: 100%;
+}
+.admin-change-article-object .change-img-info-product-container{
+  display: flex;
+  width: 50%;
+  justify-content: flex;
+}
+.change-img-info-instore-price-status .change-antal-price{
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media all and (max-width: 800px) {
+
+  .img-info-instore-price-status{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  .img-info-instore-price-status .antal-price,
+  .img-info-instore-price-status .status,
+  .img-info-instore-price-status .img-info-product-container{
+    margin: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #808080;
+    width: 100%;
+  }
+  .img-info-instore-price-status .antal-price{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .img-info-instore-price-status .antal-price>div>p{
+    text-align: left;
+  }
+  .img-info-instore-price-status .antal-price>div:first-child{
+      width: 100%;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #808080;
+  }
+  .img-info-product-container{
+    justify-content: flex-start;
+  }
+
+  .admin-article-object{
+    border: none;
+  }
 }
