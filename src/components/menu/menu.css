@@ -16,7 +16,7 @@
   margin: 1rem;
 }
 .menubasket-adminlogin-holder{
-  width: 50%;
+  width: 70%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -31,4 +31,22 @@
 
 .menu-container>img{
     width: 100px
+}
+
+.menu-container .btnMenu{
+  background-color: transparent;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #232323;
+  font-size: 1.2em;
+  margin-right: 100px;
+}
+
+.menu-container .btnMenu:focus {
+  outline: none;
+}
+.menu-container .btnMenu:hover {
+  cursor: pointer;
 }

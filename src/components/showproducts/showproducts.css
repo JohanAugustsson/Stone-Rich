@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: snow;
+  background-color: #f4f4f4;
 }
 
 .showproducts-container .wrapper-products li {

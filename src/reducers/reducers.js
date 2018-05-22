@@ -1,6 +1,4 @@
-import {
-  combineReducers
-} from 'redux';
+import { combineReducers } from 'redux';
 import {
   ADD_TO_BASKET,
   REMOVE_FROM_BASKET,
@@ -8,7 +6,8 @@ import {
   IS_ADMIN,
   REMOVE_FROM_NUMBERINSTORE,
   ADD_BACK_TO_NUMBERINSTORE,
-  EMPTY_BASKET
+  EMPTY_BASKET,
+  CHANGE_PAGE
 } from '../actions/constants.js'
 
 
@@ -82,7 +81,7 @@ const customerReducer = (state = [], action) => {
       }
 
       return [...state, obj];
-      
+
     case EMPTY_BASKET:
       let empty = [];
       state = empty;
@@ -113,12 +112,23 @@ const userReducer = (state = {}, action) => {
   return state;
 }
 
+const pageReducer = (state="products", action) => {
+  switch (action.type) {
+    case CHANGE_PAGE :
+      return action.currentPage;
+      break;
+    default:
+      return state;
+  }
+}
+
 
 
 const rootReducer = combineReducers({
   basket: customerReducer,
   products: productReducer,
   user: userReducer,
+  currentPage: pageReducer,
 });
 
 
