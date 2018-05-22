@@ -12,7 +12,6 @@ class showProducts extends Component {
 
     handleClickAddToBasket = (id) => {
       let action = addToBasket(1,id);
-      console.log(action);
       this.props.dispatch(action);
     }
 
@@ -39,9 +38,7 @@ class showProducts extends Component {
 
     render() {
         const products = this.props.products;
-        console.log("props i showProducts: ",this.props);
         let productList = "empty"
-        console.log("producker från props: ", products);
         if(products.length > 0)
           productList = this.makeProductUl(products);
 
