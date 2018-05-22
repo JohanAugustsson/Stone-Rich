@@ -57,25 +57,25 @@
   padding-bottom: 0.5rem;
 }
 
-.img-name-instore{
+.chosen-article-object .img-name-instore{
   display: flex;
 }
-.img-name-instore>div:last-child{
+.chosen-article-object .img-name-instore>div:last-child{
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
   width: 200px;
 }
-.img-name-instore .isInStore{
+.chosen-article-object .img-name-instore .isInStore{
   color: green;
 }
-.img-name-instore>.product-img-container{
+.chosen-article-object .img-name-instore>.product-img-container{
   width: 70px;
 }
-.img-name-instore>.product-img-container>img{
+.chosen-article-object .img-name-instore>.product-img-container>img{
   width: 100%;
 }
-.amount-minus-plus{
+.chosen-article-object .amount-minus-plus{
   width: 10%;
   display: flex;
   justify-content: space-between;
@@ -83,18 +83,19 @@
   align-content: center;
 
 }
-.amount-minus-plus>input{
+.chosen-article-object .amount-minus-plus>input{
   padding: 3px;
   width: 30px;
   text-align: center;
 
 }
-.amount-minus-plus>button{
+.chosen-article-object .amount-minus-plus>button{
   width: 15px;
   height: 15px;
 
 }
-.totalsum{
+
+ .totalsum{
   margin-top: 4rem;
   width: 90%;
   text-align: right;

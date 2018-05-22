@@ -40,10 +40,10 @@
 .admin-button-container>button:last-child{
   border-radius: 0 5px 5px 0;
 }
+/*FÖR ATT ÄNDRA UTSEENDET PÅ ADMIN KNAPPARNA*/
 .admin-container>.admin-button-container>.admin-chosen-category{
   background-color: #606060;
 }
-
 
 
 .admin-products-container{
@@ -69,12 +69,7 @@
 .admin-article-object{
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
   width: 90%;
-  padding: 0 0.5rem;
-
-  border-bottom: 1px solid #606060;
-  padding-bottom: 0.5rem;
 }
 
 .id-changeButton{
@@ -82,7 +77,126 @@
   justify-content: space-between;
 }
 
-.img-info-product-container{
+
+.main-content{
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 0 0.5rem;
+
+  border-bottom: 1px solid #606060;
+  padding-bottom: 0.5rem;
+}
+
+.admin-article-object .change-content{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 2px solid #f4f4f4;
+}
+.admin-article-object .change-content>p:last-child{
+  color: darkred;
+  font-weight: bold;
+}
+
+.admin-article-object .save-content{
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  color: darkred;
+  font-weight: bold;
+}
+.admin-article-object .save-content>p:last-child{
+  color: green;
+}
+
+
+.main-content .img-name-instore{
+  display: flex;
+  width: 40%;
+}
+
+.main-content .img-name-instore>div:last-child{
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 100px;
+}
+
+.main-content .img-name-instore .isInStore{
+  color: green;
+}
+
+.main-content .img-container{
+  width: 70px;
+  min-width: 70px;
+}
+.main-content .img-container>img{
+  width: 100%;
+}
+
+.main-content .miniHeader{
+  margin-bottom: 0.5rem;
+  color: #606060;
+  font-size: 1,1rem;
+}
+.main-content .isInStore{
+  border-top: 2px solid #f4f4f4;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+
+.main-content .admin-amount{
+  width: 30%;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+/* change*/
+.main-content .admin-amount>.admin-amount-update{
+  display: flex;
+  align-items: center;
+}
+.main-content .admin-amount>.admin-amount-update>input{
+  padding: 3px;
+  width: 50px;
+  margin: 0 0.5rem;
+}
+.main-content .admin-price label>input{
+  padding: 3px;
+  width: 100px;
+  margin: 0 0.5rem;
+}
+.main-content .admin-amount>.admin-amount-update>button{
+  width:15px;
+  height: 15px;
+}
+
+.main-content .img-name-instore textarea{
+  resize: none;
+}
+/**/
+.main-content .admin-price{
+  width: 30%;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+
+/*.img-info-product-container{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,6 +214,8 @@
   width: 100%;
 
 }
+
+
 
 
 .img-info-instore-price-status{
@@ -139,7 +255,7 @@
 }
 
 
-/* change object css */
+
 .admin-change-article-object{
   display: flex;
   flex-direction: column;
@@ -179,9 +295,53 @@
   flex-direction: column;
 }
 
+*/
 
 @media all and (max-width: 800px) {
 
+  .main-content{
+    margin-top: 1rem;
+    /* width: 90%; */
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 0 0.5rem;
+
+    border-bottom: 1px solid #606060;
+    padding-bottom: 0.5rem;
+  }
+
+  .main-content>div{
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f4f4f4;
+    width: 100%;
+  }
+  .main-content>div:last-child{
+    border: none;
+  }
+  .main-content .isInStore{
+    border: none;
+  }
+  .main-content .admin-amount,
+  .main-content .admin-price,
+  .main-content .img-name-instore{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .main-content .admin-amount,
+  .main-content .admin-price{
+    align-content:flex-start;
+    align-items:baseline;
+  }
+  .main-content .admin-amount>p:last-child,
+  .main-content .admin-price>p:last-child{
+    padding-right: 1rem;
+  }
+/*
   .img-info-instore-price-status{
     display: flex;
     flex-direction: column;
@@ -215,7 +375,7 @@
     justify-content: flex-start;
   }
 
-  .admin-article-object{
+  .main-content{
     border: none;
-  }
+  }*/
 }

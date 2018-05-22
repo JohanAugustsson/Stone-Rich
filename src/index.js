@@ -10,7 +10,7 @@ import rootReducer from "./reducers/reducers";
 const initialState = {
   basket: [],
   user : {
-    password:"ADMIN",
+    password:"",
     isAdmin : false,
     showLogin: false
   },
