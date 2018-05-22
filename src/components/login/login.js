@@ -1,5 +1,7 @@
 import React from 'react';
 import './login.css';
+import { connect } from 'react-redux';
+import { toggleLoginMenu, isAdmin } from '../../actions/actions.js'
 
 
 class Login extends React.Component {
@@ -9,14 +11,18 @@ class Login extends React.Component {
   }
 
   handleLogin = (e) => {
-    if(this.state.inputValue === "LoggaIn"){
+    if(this.state.inputValue === this.props.adminPassword ){
       this.setState({msg:"inloggad"})
+      let action = toggleLoginMenu()
+      this.props.dispatch(action);
+
+      let actionAdmin = isAdmin(true);
+      this.props.dispatch(actionAdmin);
+
     } else {
       this.setState({msg:"Fel lösenord"})
     }
-    setTimeout( ()=> {
-        this.setState({msg:""})
-    }, 3000);  // 3 seconds
+
   }
 
   handleInput = (e) => {
@@ -29,20 +35,27 @@ class Login extends React.Component {
 
     return (
       <div className="component login-container">
-
           <div className="wrapper-main">
-            <i className="fa fa-times fa-2x closeLogin" aria-hidden="true"></i>
-            <span> { this.state.msg }</span>
-            <span>Logga in som admin, ange lösenord</span>
+            <i className="fa fa-times fa-2x closeLogin" aria-hidden="true" onClick={ () => this.props.dispatch(toggleLoginMenu())}></i>
+            <span className="loginInfo">Logga in som admin, ange lösenord</span>
             <div>
-              <input onChange={this.handleInput} value={this.state.inputValue} type="text" placeholder="Lösenord" />
-              <button  onClick={this.handleLogin}>Logga in</button>
+              <span className="loginMsg"> { this.state.msg }</span>
+              <div>
+                <input onChange={this.handleInput} value={this.state.inputValue} type="text" placeholder="Lösenord" />
+                <button  onClick={this.handleLogin}>Logga in</button>
+              </div>
             </div>
-
           </div>
       </div>
     )
   }
 }
 
-export default Login;
+
+let mapStateToProps = (state) => {
+  return {
+    adminPassword : state.user.password,
+  }
+}
+
+export default connect(mapStateToProps)(Login);

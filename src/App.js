@@ -6,6 +6,7 @@ import Customer from "./containers/customer-page/customer";
 import Menu from "./components/menu/menu";
 import Admin from "./containers/admin/admin";
 import Login from "./components/login/login";
+import { connect } from 'react-redux';
 
 class App extends Component {
 
@@ -16,10 +17,17 @@ class App extends Component {
         <Products />
         <Customer/>
         <Admin/>
-        <Login />
+        {this.props.showLogin ? <Login />: "" }
       </div>
     );
   }
 }
 
-export default App;
+
+let mapStateToProps = (state) => {
+  return {
+    showLogin: state.user.showLogin
+  }
+}
+
+export default connect(mapStateToProps)(App);

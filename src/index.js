@@ -9,9 +9,10 @@ import productList from "./mocks/products.json";
 import rootReducer from "./reducers/reducers";
 const initialState = {
   basket: [],
-  isAdmin : {
+  user : {
     password:"ADMIN",
-    locked : true
+    isAdmin : false,
+    showLogin: false
   },
   products:[...productList],
   history:{

@@ -7,9 +7,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(112, 112, 112, 0.3);
-  top: 0px;
+  top: -16px;
   bottom: 0px;
-  left: 0px;
+  left: -15px;
   right: 0px;
   z-index: 100;
 }
@@ -24,6 +24,7 @@
   background-color: #fff;
   height: 20%;
   width: 40%;
+  min-width: 400px;
   border-radius: 5px;
 }
 
@@ -33,6 +34,21 @@
   right: 5%;
   transition: transform .25s ease;
 }
+
+.login-container .wrapper-main .loginMsg {
+  display: block;
+  min-height: 30px;
+  min-width: 60px;
+  color: red;
+  margin-left: 10px;
+}
+
+.login-container .wrapper-main .loginInfo {
+  position: absolute;
+  top: 20px;
+  font-size: 1.2em;
+}
+
 .login-container .wrapper-main .closeLogin:hover {
   transform: scale(1.25);
   cursor: pointer;
@@ -40,8 +56,13 @@
 
 .login-container .wrapper-main button {
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 5px;
+  background-color: #5FB92B;
+  color: white;
+
 }
 
 .login-container .wrapper-main button:hover {
@@ -52,4 +73,5 @@
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
+  font-size: 1.2em;
 }
