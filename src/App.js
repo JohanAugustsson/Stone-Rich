@@ -11,12 +11,27 @@ import { connect } from 'react-redux';
 class App extends Component {
 
   render() {
+
+    let showPage;
+    switch (this.props.currentPage) {
+      case "basket" :
+        showPage = (<Customer />)
+        break;
+      case "products" :
+        showPage = ( <Products /> )
+        break;
+      case "admin" :
+        showPage = ( <Admin/> )
+        break;
+      default:
+        showPage =  ( <Products /> )
+    }
+
+
     return (
       <div className="App">
         <Menu/>
-        <Products />
-        <Customer/>
-        <Admin/>
+        { showPage }
         {this.props.showLogin ? <Login />: "" }
       </div>
     );
@@ -26,7 +41,8 @@ class App extends Component {
 
 let mapStateToProps = (state) => {
   return {
-    showLogin: state.user.showLogin
+    showLogin: state.user.showLogin,
+    currentPage : state.currentPage
   }
 }
 

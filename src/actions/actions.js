@@ -5,7 +5,8 @@ import {
   IS_ADMIN,
   REMOVE_FROM_NUMBERINSTORE,
   ADD_BACK_TO_NUMBERINSTORE,
-  EMPTY_BASKET
+  EMPTY_BASKET,
+  CHANGE_PAGE
 } from './constants.js'
 
 let addToBasket = (nb, id) => {
@@ -56,6 +57,13 @@ let isAdmin = (isAdmin) => {
   })
 }
 
+let changePage = (page) => {
+  return ({
+    type: CHANGE_PAGE,
+    currentPage : page
+  })
+}
+
 export {
   addToBasket,
   removeFromBasket,
@@ -63,5 +71,6 @@ export {
   isAdmin,
   removeFromNumberInstore,
   addBackToNumberInStore,
-  emptyBasket
+  emptyBasket,
+  changePage
 };

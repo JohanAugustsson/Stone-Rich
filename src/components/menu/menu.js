@@ -3,7 +3,7 @@ import "./menu.css";
 import MenuBasket from "../menubasket/menubasket";
 import Login from "../login/login";
 import { connect } from 'react-redux';
-import { toggleLoginMenu , isAdmin } from '../../actions/actions.js'
+import { toggleLoginMenu , isAdmin, changePage } from '../../actions/actions.js'
 
 class Menu extends React.Component {
 
@@ -24,6 +24,13 @@ class Menu extends React.Component {
     return count;
   }
 
+  handleClickChangePage = (page) => {
+    let action = changePage(page);
+    console.log(action);
+    this.props.dispatch(action);
+
+  }
+
   render(){
     let count = this.countProductInBasket();
 
@@ -32,13 +39,18 @@ class Menu extends React.Component {
       btn = (<p className='adminlogin' onClick={this.handleClickLogout}>Logga ut</p>)
     } else {
       btn = (<p className='adminlogin' onClick={this.handleClickLogin}>Logga in</p>)
-
     }
+
+
 
     return (<div className="menu-container">
                 <img src='img/stone-rich-logo.png' alt="StoneRich-Img"/>
                 <div className='menubasket-adminlogin-holder'>
-                  <MenuBasket numberInBasket={ count } onClick={()=>console.log('menubasket')}/>
+                  <button className="btnMenu" onClick={ ()=> this.handleClickChangePage("products") }>Home</button>
+                  {this.props.isAdmin ? <button className="btnMenu" onClick={ ()=> this.handleClickChangePage("admin") }>Admin</button>  : ""}
+                  <div onClick={ ()=> this.handleClickChangePage("basket") }>
+                    <MenuBasket numberInBasket={ count } />
+                  </div>
                   <p>|</p>
                   { btn }
                 </div>
