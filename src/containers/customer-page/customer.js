@@ -1,28 +1,66 @@
 import React, {Component} from "react";
 import "./customer.css";
 import {connect} from "react-redux";
+import {addToBasket} from '../../actions/actions.js';
+import {removeFromBasket} from "../../actions/actions";
+import {removeFromNumberInstore} from "../../actions/actions.js";
+import {addBackToNumberInStore} from "../../actions/actions";
+import {emptyBasket} from "../../actions/actions";
 
 class customer extends Component {
 
     componentDidMount() {}
-    getTotalProductPrice = (nb,price) =>{
-      let total = 0;
-      total = nb*price;
-      return total;
+    getTotalProductPrice = (nb, price) => {
+        let total = 0;
+        total = nb * price;
+        return total;
     }
 
-    getTotalPrice = (productList,basket) =>{
-      let total = 0;
-      for(let i = 0; i < productList.length; i++){
-        for(let j = 0; j < basket.length; j++){
-          if(productList[i].id === basket[j].id){
-            total += productList[i].price * basket[j].numberInBasket;
-          }
+    getTotalPrice = (productList, basket) => {
+        let total = 0;
+        for (let i = 0; i < productList.length; i++) {
+            for (let j = 0; j < basket.length; j++) {
+                if (productList[i].id === basket[j].id) {
+                    total += productList[i].price * basket[j].numberInBasket;
+                }
+            }
         }
-      }
-      return total;
+        return total;
     }
 
+    isProductsInStore = (productList, id) => {
+        let isInStore = true;
+        for (let i = 0; i < productList.length; i++) {
+
+            if (productList[i].id === id) {
+                if (!productList[i].numberinstore > 0) {
+                    isInStore = false;
+                }
+            }
+        }
+        return isInStore;
+    }
+
+    handleClickBasket = (id, products, add) => {
+        if (add) {
+            if (this.isProductsInStore(products, id)) {
+                let actionAddBasket = addToBasket(1, id);
+                let actionInStoreDecrease = removeFromNumberInstore(1, id);
+                this.props.dispatch(actionAddBasket);
+                this.props.dispatch(actionInStoreDecrease);
+            }
+        } else {
+            let actionDecreaseBasket = removeFromBasket(1, id);
+            let actionInStoreAdd = addBackToNumberInStore(1, id)
+            this.props.dispatch(actionDecreaseBasket);
+            this.props.dispatch(actionInStoreAdd);
+        }
+    }
+
+    handleClickEmptyYourBasket = () =>{
+      let actionEmpty = emptyBasket();
+      this.props.dispatch(actionEmpty);
+    }
     getChosenProducts = (productList, basket) => {
         let basketList = basket.map(product => {
             let productInfo = productList.filter(item => product.id === item.id);
@@ -40,11 +78,11 @@ class customer extends Component {
                     </div>
                 </div>
                 <div className='amount-minus-plus'>
-                    <button onClick={() => console.log('minus knapp')}>-</button>
+                    <button onClick={() => this.handleClickBasket(product.id, this.props.productlist, false)} disabled={!product.numberInBasket}>-</button>
                     <input type="text" onChange={() => console.log("")} name="" value={product.numberInBasket} placeholder='1'/>
-                    <button onClick={() => console.log('plus knapp')}>+</button>
+                    <button onClick={() => this.handleClickBasket(product.id, this.props.productlist, true)} disabled={!productInfo.numberinstore}>+</button>
                 </div>
-                <p>{this.getTotalProductPrice(product.numberInBasket,productInfo.price)}</p>
+                <p>{this.getTotalProductPrice(product.numberInBasket, productInfo.price)}</p>
             </div>)
         });
         return basketList
@@ -73,7 +111,7 @@ class customer extends Component {
                     </h3>
                 </div>
                 <div className='pay-or-emty-basket'>
-                    <button onClick={() => console.log('Töm varukorg')}>Töm varukorg</button>
+                    <button onClick={() => this.handleClickEmptyYourBasket()}>Töm varukorg</button>
                     <button onClick={() => console.log('Gå till kassan')}>Gå till kassan</button>
                 </div>
 

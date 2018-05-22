@@ -3,12 +3,34 @@ import {
   REMOVE_FROM_BASKET,
   TOGGLE_LOGIN_MENU,
   IS_ADMIN,
-  REMOVE_FROM_NUMBERINSTORE
+  REMOVE_FROM_NUMBERINSTORE,
+  ADD_BACK_TO_NUMBERINSTORE,
+  EMPTY_BASKET
 } from './constants.js'
 
 let addToBasket = (nb, id) => {
   return ({
     type: ADD_TO_BASKET,
+    nb,
+    id
+  })
+}
+
+let removeFromBasket = (nb,id) =>{
+  return({
+    type:REMOVE_FROM_BASKET,
+    nb,
+    id
+  })
+}
+let emptyBasket = () =>{
+  return ({
+    type: EMPTY_BASKET
+  })
+}
+let addBackToNumberInStore = (nb,id) =>{
+  return({
+    type:ADD_BACK_TO_NUMBERINSTORE,
     nb,
     id
   })
@@ -36,7 +58,10 @@ let isAdmin = (isAdmin) => {
 
 export {
   addToBasket,
+  removeFromBasket,
   toggleLoginMenu,
   isAdmin,
-  removeFromNumberInstore
+  removeFromNumberInstore,
+  addBackToNumberInStore,
+  emptyBasket
 };
