@@ -22,12 +22,13 @@ const productReducer = (state = [], action) => {
 
       let index = state.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
       if (index >= 0) {
-        let numbers = state[index].numberinstore - 1
+        let numbers = state[index].numberinstore - newObj.nb
         let newState = [...state];
         newState[index].numberinstore = numbers
         return newState;
       }
       return [...state, newObj];
+
     case ADD_BACK_TO_NUMBERINSTORE:
       let obj = {
         id: action.id,
@@ -36,7 +37,7 @@ const productReducer = (state = [], action) => {
 
       let theIndex = state.findIndex(item => item.id === obj.id); //kontrollerar om det produkten redan finns
       if (theIndex >= 0) {
-        let numbers = state[theIndex].numberinstore + 1
+        let numbers = state[theIndex].numberinstore + obj.nb
         let newState = [...state];
         newState[theIndex].numberinstore = numbers
         return newState;
