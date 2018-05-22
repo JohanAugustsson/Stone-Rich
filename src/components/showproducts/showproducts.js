@@ -30,6 +30,7 @@ class showProducts extends Component {
             this.props.dispatch(action1);
             this.props.dispatch(action2);
         }
+
     }
 
     makeProductUl = (products) => {
@@ -57,11 +58,10 @@ class showProducts extends Component {
 
     render() {
         const products = this.props.products;
-        // console.log("props i showProducts: ", this.props);
+
         let productList = "empty"
-        // console.log("producker från props: ", products);
-        if (products.length > 0)
-            productList = this.makeProductUl(products);
+        if(products.length > 0)
+          productList = this.makeProductUl(products);
 
         return (<div className="component showproducts-container">
             <div className="wrapper-products">

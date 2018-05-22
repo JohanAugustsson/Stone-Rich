@@ -55,7 +55,7 @@ const userReducer = (state={},action) => {
       break;
     case IS_ADMIN :
       let isAdmin = action.isAdmin
-      return {...state, "isAdmin" : true}
+      return {...state, "isAdmin" : isAdmin}
     default:
       return state;
   }
