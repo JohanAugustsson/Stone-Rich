@@ -17,6 +17,9 @@
   padding: 0.5rem;
   margin: 1rem 0;
 }
+.admin-pointer-btn:hover{
+  cursor: pointer;
+}
 
 .admin-container>.admin-button-container{
   width: 80%;
@@ -71,13 +74,36 @@
   flex-direction: column;
   width: 90%;
 }
-
-.id-changeButton{
+.admin-article-object .add-product-conatainer{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  margin-top: 2rem;
 }
 
+.admin-article-object .add-product-conatainer>button{
+  padding: 0.5rem 2rem;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
 
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+
+}
+.admin-article-object .add-product-conatainer>button:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
 .main-content{
   margin-top: 1rem;
   width: 100%;
@@ -90,6 +116,10 @@
 
   border-bottom: 1px solid #606060;
   padding-bottom: 0.5rem;
+}
+
+.add-products-main{
+  border: none;
 }
 
 .admin-article-object .change-content{
@@ -193,6 +223,8 @@
   resize: none;
 }
 /**/
+
+
 .main-content .admin-price{
   width: 25%;
   min-width: 100px;

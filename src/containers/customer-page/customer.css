@@ -59,29 +59,68 @@
 
 .chosen-article-object .img-name-instore{
   display: flex;
+  width: 40%;
 }
 .chosen-article-object .img-name-instore>div:last-child{
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 70%;
+  min-width: 100px;
 }
 .chosen-article-object .img-name-instore .isInStore{
   color: green;
 }
 .chosen-article-object .img-name-instore>.product-img-container{
   width: 70px;
+  min-width: 70px;
 }
 .chosen-article-object .img-name-instore>.product-img-container>img{
   width: 100%;
 }
 .chosen-article-object .amount-minus-plus{
-  width: 10%;
+  width: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   align-content: center;
+  min-width: 100px;
+}
+.chosen-article-object>p.smallerItems{
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 70px;
+}
+.customer-remove{
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 5px;
 
+  display: flex;
+  justify-content: center;
+  min-width: 40px;
+  font-weight: bold;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.customer-remove:hover{
+  cursor: pointer;
+  background-color: gray;
+
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 .chosen-article-object .amount-minus-plus>input{
   padding: 3px;
@@ -90,9 +129,9 @@
 
 }
 .chosen-article-object .amount-minus-plus>button{
-  width: 15px;
-  height: 15px;
-
+  width: 20px;
+  height: 20px;
+  margin: 0 0.5rem;
 }
 
  .totalsum{
@@ -124,4 +163,20 @@
 }
 .pay-or-emty-basket>button:last-child{
   background-color: green;
+}
+
+@media all and (max-width: 820px) {
+  .chosen-article-object{
+    width: 100%;
+    flex-direction: column;
+
+  }
+
+  .chosen-article-object>.img-name-instore,
+  .chosen-article-object>.amount-minus-plus{
+    width: 100%;
+    border-bottom: 2px solid #f4f4f4;
+    padding: 1rem;
+
+  }
 }
