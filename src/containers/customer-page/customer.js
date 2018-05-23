@@ -6,6 +6,7 @@ import {removeFromBasket} from "../../actions/actions";
 import {removeFromNumberInstore} from "../../actions/actions.js";
 import {addBackToNumberInStore} from "../../actions/actions";
 import {emptyBasket} from "../../actions/actions";
+import HistoryContainer from "../../components/history/history";
 
 class customer extends Component {
 
@@ -116,7 +117,9 @@ class customer extends Component {
                 </div>
 
             </div>
+            <HistoryContainer/>
         </div>);
+
     }
 }
 let mapStateToProps = state => {
