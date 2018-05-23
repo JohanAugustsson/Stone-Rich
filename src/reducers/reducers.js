@@ -84,6 +84,7 @@ const customerReducer = (state = {past : [], present : [], future : []}, action)
       if (index >= 0) {
         let numbers = state.present[index].numberInBasket + 1
         stateToReturn =  [...state.present]
+        stateToReturn[index] = {...state.present[index]} // gör en djup kopiering av valt element i arrayen
         stateToReturn[index].numberInBasket = numbers
       }else {
         stateToReturn =  [...state.present , newObj];
