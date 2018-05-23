@@ -6,6 +6,7 @@ import {removeFromBasket} from "../../actions/actions";
 import {removeFromNumberInstore} from "../../actions/actions.js";
 import {addBackToNumberInStore} from "../../actions/actions";
 import {emptyBasket} from "../../actions/actions";
+import HistoryContainer from "../../components/history/history";
 
 class customer extends Component {
 
@@ -58,6 +59,13 @@ class customer extends Component {
     }
 
     handleClickEmptyYourBasket = () =>{
+      let basket = this.props.basket;
+
+      basket.forEach( product => { // lägger tillbaka alla till storen
+        let action = addBackToNumberInStore(product.numberInBasket, product.id)
+        this.props.dispatch(action);
+      })
+
       let actionEmpty = emptyBasket();
       this.props.dispatch(actionEmpty);
     }
@@ -117,7 +125,9 @@ class customer extends Component {
                 </div>
 
             </div>
+            <HistoryContainer/>
         </div>);
+
     }
 }
 let mapStateToProps = state => {
