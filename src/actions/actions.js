@@ -6,7 +6,9 @@ import {
   REMOVE_FROM_NUMBERINSTORE,
   ADD_BACK_TO_NUMBERINSTORE,
   EMPTY_BASKET,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  UNDO_BASKET,
+  REDO_BASKET
 } from './constants.js'
 
 let addToBasket = (nb, id) => {

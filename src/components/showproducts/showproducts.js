@@ -58,7 +58,7 @@ class showProducts extends Component {
 
     render() {
         const products = this.props.products;
-
+        console.log(this.props);
         let productList = "empty"
         if(products.length > 0)
           productList = this.makeProductUl(products);
@@ -77,7 +77,7 @@ showProducts.propTypes = {
 }
 
 let mapStateToProps = state => {
-    return {products: state.products}
+    return {products: state.products.present}
 }
 
 export default connect(mapStateToProps)(showProducts);
