@@ -7,13 +7,21 @@ import {
   REMOVE_FROM_NUMBERINSTORE,
   ADD_BACK_TO_NUMBERINSTORE,
   EMPTY_BASKET,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  REMOVE_PRODUCT,
+  ADD_PRODUCT
 } from '../actions/constants.js'
 
 
 const productReducer = (state = [], action) => {
 
   switch (action.type) {
+    case REMOVE_PRODUCT:
+      let newState = state.filter((x)=> x.id!==action.id);
+      return newState;
+    case ADD_PRODUCT:
+      console.log(state);
+      break;
     case REMOVE_FROM_NUMBERINSTORE:
       let newObj = {
         id: action.id,
@@ -122,6 +130,7 @@ const pageReducer = (state="products", action) => {
       return state;
   }
 }
+
 
 
 

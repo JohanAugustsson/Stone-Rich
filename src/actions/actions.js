@@ -6,7 +6,10 @@ import {
   REMOVE_FROM_NUMBERINSTORE,
   ADD_BACK_TO_NUMBERINSTORE,
   EMPTY_BASKET,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  REMOVE_PRODUCT,
+  ADD_PRODUCT,
+  SAVE_CHANGED_PRODUCT
 } from './constants.js'
 
 let addToBasket = (nb, id) => {
@@ -64,6 +67,22 @@ let changePage = (page) => {
   })
 }
 
+let removeProduct = (id) => ({ // paranterser för att det ska tolkas som objekt
+    type:REMOVE_PRODUCT,
+    id
+})
+
+let addProduct = (obj) => ({
+    type:ADD_PRODUCT,
+    obj
+})
+
+let saveChangedProduct = (obj, id) => ({
+    type: SAVE_CHANGED_PRODUCT,
+    obj,
+    id
+})
+
 export {
   addToBasket,
   removeFromBasket,
@@ -72,5 +91,8 @@ export {
   removeFromNumberInstore,
   addBackToNumberInStore,
   emptyBasket,
-  changePage
+  changePage,
+  removeProduct,
+  addProduct,
+  saveChangedProduct
 };

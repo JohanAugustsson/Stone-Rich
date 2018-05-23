@@ -1,10 +1,13 @@
 import React, {Component} from "react";
 import "./admin.css";
 import 'font-awesome/css/font-awesome.min.css';
+import {connect} from "react-redux";
+import {removeProduct} from '../../actions/actions.js';
+import {addProduct} from '../../actions/actions.js'
 
 
-import productlist from "../../mocks/products.json"; // endast till testning ska byttas till state props
-console.log(productlist);
+// import productlist from "../../mocks/products.json"; // endast till testning ska byttas till state props
+// console.log(productlist);
 
 class admin extends Component {
   constructor(props) {
@@ -13,11 +16,27 @@ class admin extends Component {
         this.state={
           currentPage:'allProducts',
           edit:false,
-          editId:''
+          editId:'',
+          addAproduct:{
+            id: 100,
+            name: '',
+            img: '',
+            numberinstore: 1,
+            productinfo:''
+          }
         }
   }
 
-  changeProduct=(id)=>{
+  removeAdminProduct = (id)=>{
+    console.log(removeProduct(id));
+    this.props.dispatch(removeProduct(id));
+  }
+
+  addAdminProduct = (obj) =>{
+    console.log(obj);
+  }
+
+  switchToChange=(id)=>{
     this.setState({edit:true, editId:id});
   }
 
@@ -31,7 +50,7 @@ class admin extends Component {
                 <div className='change-content'>
                     <h3>id: {obj.id}</h3>
                     <div className='save-content'>
-                      <p className='admin-pointer-btn' onClick={()=>console.log('ta bort')}>&times; Ta bort</p>
+                      <p className='admin-pointer-btn' onClick={()=>this.removeAdminProduct(obj.id)}>&times; Ta bort</p>
                       <p className='admin-pointer-btn' onClick={()=>console.log('spara')}><i className="far fa-edit"></i> Spara</p>
                     </div>
                 </div>
@@ -44,6 +63,8 @@ class admin extends Component {
                           <input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.img}/>
                         </div>
                         <div className='textAreaContainer'>
+                          <p className='miniHeader'>Namn</p>
+                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.name}/>
                           <p className='miniHeader'>Produkt info</p>
                           <textarea onChange={(e)=>console.log(e.target)} value={obj.productinfo} name="name" rows="8" cols="80"></textarea>
                           {(obj.numberinstore>0) ? <p className='isInStore'>Finns i lager</p>:<p className='notInStore'>slutsåld</p>}
@@ -67,7 +88,7 @@ class admin extends Component {
           :<div key={obj.id} className='admin-article-object'>
               <div className='change-content'>
                   <h3>id: {obj.id}</h3>
-                  <p className='admin-pointer-btn' onClick={()=>this.changeProduct(obj.id)}><i className="far fa-edit"></i> Ändra</p>
+                  <p className='admin-pointer-btn' onClick={()=>this.switchToChange(obj.id)}><i className="far fa-edit"></i> Ändra</p>
               </div>
               <div className='main-content'>
                   <div className='img-name-instore'>
@@ -75,6 +96,8 @@ class admin extends Component {
                         <img src={(obj.img)? obj.img:'img/placeholder.png'} alt='product bild' title='productbild'/>
                       </div>
                       <div>
+                        <p className='miniHeader'>Namn</p>
+                          <p>{obj.name}</p>
                         <p className='miniHeader'>Produkt info</p>
                         <p>{obj.productinfo}</p>
                         {(obj.numberinstore>0) ? <p className='isInStore'>Finns i lager</p>:<p className='notInStore'>slutsåld</p>}
@@ -101,7 +124,7 @@ class admin extends Component {
 
   render(){
 
-    let allProducts = productlist;
+    let allProducts = this.props.products;
     let all = this.getAllProducts(allProducts);
     let qurrentPage;
     if (this.state.currentPage==='allProducts') {
@@ -114,20 +137,22 @@ class admin extends Component {
                       <div className='changeUrl'>
                       <p className='miniHeader'>Bild URL</p>
                         <div className='img-container'>
-                          <img src='img/stones/hjärta.jpg' alt='product bild' title='ädelsten'/>
+                          <img src={(this.state.addAproduct.img)? this.state.addAproduct.img:'img/placeholder.png'}  alt='product bild' title='ädelsten'/>
                         </div>
-                        <input onChange={(e)=>console.log(e.target)} type="text" name="" value="url"/>
+                        <input onChange={(e)=>console.log(e.target.value)} type="text" name="" value={this.state.addAproduct.img}/>
                       </div>
                       <div className='textAreaContainer'>
+                        <p className='miniHeader'>Namn</p>
+                        <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.name}/>
                         <p className='miniHeader'>Produkt info</p>
-                        <textarea onChange={(e)=>console.log(e.target)} name="name" rows="8" cols="80"></textarea>
+                        <textarea onChange={(e)=>console.log(e.target.value)} name="name" rows="8" cols="80"></textarea>
                       </div>
                   </div>
                   <div className='admin-amount'>
                       <p className='miniHeader'>Antal på lager</p>
                       <div className='admin-amount-update'>
                         <button onClick={()=>console.log('minus knapp')}>-</button>
-                        <input onChange={(e)=>console.log(e.target)} type="text" name="" value="1"/>
+                        <input onChange={(e)=>console.log(e.target.value)} type="text" name="" value="1"/>
                         <button onClick={()=>console.log('plus knapp')}>+</button>
                       </div>
                   </div>
@@ -164,5 +189,9 @@ class admin extends Component {
   }// render
 }// class admin
 
+let mapStateToProps=(state)=>{
+  return {products: state.products} // ger mig initialstate används längre upp som props
+}
 
-export default admin;
+
+export default connect(mapStateToProps)(admin);
