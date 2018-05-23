@@ -8,16 +8,19 @@ import {Provider} from "react-redux";
 import productList from "./mocks/products.json";
 import rootReducer from "./reducers/reducers";
 const initialState = {
-  basket: [],
+  basket: {
+    past:[],
+    present:[],
+    future:[]
+  },
   user : {
     password:"ADMIN",
     isAdmin : false,
     showLogin: false
   },
-  products:[...productList],
-  history:{
+  products: {
     past:[],
-    present:[],
+    present:[...productList],
     future:[]
   },
   currentPage: "products"

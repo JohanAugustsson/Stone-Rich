@@ -60,7 +60,7 @@ class Menu extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    basket : state.basket,
+    basket : state.basket.present,
     isAdmin : state.user.isAdmin
   }
 }

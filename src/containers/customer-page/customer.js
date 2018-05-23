@@ -130,6 +130,6 @@ class customer extends Component {
     }
 }
 let mapStateToProps = state => {
-    return {basket: state.basket, productlist: state.products}
+    return {basket: state.basket.present , productlist: state.products.present}
 }
 export default connect(mapStateToProps)(customer);
