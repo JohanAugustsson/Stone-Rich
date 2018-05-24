@@ -3,7 +3,7 @@ import "./admin.css";
 import 'font-awesome/css/font-awesome.min.css';
 import {connect} from "react-redux";
 import {removeProduct} from '../../actions/actions.js';
-import {addProduct} from '../../actions/actions.js'
+import {addProduct, saveChangedProduct } from '../../actions/actions.js'
 
 
 // import productlist from "../../mocks/products.json"; // endast till testning ska byttas till state props
@@ -47,7 +47,7 @@ class admin extends Component {
     let index = this.state.editId;
     let currentIndex = this.state.addAproduct.id
 
-    if(index !== 'undefined' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
+    if(index !== '' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
       let productList = this.props.products
       let productToEdit = productList[index];
 
@@ -74,14 +74,30 @@ class admin extends Component {
       })
   }
 
+  numberOfProducts = (nb) => {
+    let number = Number(this.state.addAproduct.numberinstore);
 
+    number+= nb
+    if(number< 0)
+    number = 0
 
+    let obj = this.state.addAproduct;
+    obj.numberinstore = number
+    this.setState({addAproduct : obj})
+  }
+
+  saveProduct = () => {
+    let obj = this.state.addAproduct;
+    let action = saveChangedProduct(obj)
+    this.props.dispatch(action);
+    this.setState({edit: false})
+  }
 
 
   getAllProducts=(allProducts, qurrentId='')=> {
     let list = allProducts;
 
-    console.log(list);
+    //console.log(list);
     let firstTime = true;
     let chosenProducts = list.map(obj=>{
 
@@ -91,36 +107,36 @@ class admin extends Component {
                     <h3>id: {obj.id}</h3>
                     <div className='save-content'>
                       <p className='admin-pointer-btn' onClick={()=>this.removeAdminProduct(obj.id)}>&times; Ta bort</p>
-                      <p className='admin-pointer-btn' onClick={()=>console.log('spara')}><i className="far fa-edit"></i> Spara</p>
+                      <p className='admin-pointer-btn' onClick={()=>this.saveProduct()}><i className="far fa-edit"></i> Spara</p>
                     </div>
                 </div>
                 <div className='main-content'>
                     <div className='img-name-instore mobile'>
                         <div className='changeUrl'>
                           <div className='img-container'>
-                            <img src={(obj.img)? obj.img:'img/placeholder.png'} alt='product bild' title='ädelsten'/>
+                            <img src={(this.state.addAproduct.img) ? this.state.addAproduct.img :'img/placeholder.png'} alt='product bild' title='ädelsten'/>
                           </div>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.img}/>
+                          <input onChange={(e)=> this.addAdminProduct(e,"img")} type="text" name="" value={this.state.addAproduct.img}/>
                         </div>
                         <div className='textAreaContainer'>
                           <p className='miniHeader'>Namn</p>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.name}/>
+                          <input onChange={(e)=> this.addAdminProduct(e,"name")} type="text" name="" value={this.state.addAproduct.name}/>
                           <p className='miniHeader'>Produkt info</p>
-                          <textarea onChange={(e)=>console.log(e.target)} value={this.state.addAproduct.productinfo} name="name" rows="8" cols="80"></textarea>
+                          <textarea onChange={(e)=> this.addAdminProduct(e,"productinfo")} value={this.state.addAproduct.productinfo} name="name" rows="8" cols="80"></textarea>
                           {(obj.numberinstore>0) ? <p className='isInStore'>Finns i lager</p>:<p className='notInStore'>slutsåld</p>}
                         </div>
                     </div>
                     <div className='admin-amount'>
                         <p className='miniHeader'>Antal på lager</p>
                         <div className='admin-amount-update'>
-                          <button onClick={()=>console.log('minus knapp')}>-</button>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.numberinstore}/>
-                          <button onClick={()=>console.log('plus knapp')}>+</button>
+                          <button onClick={()=> this.numberOfProducts(-1)}>-</button>
+                          <input onChange={(e)=> this.addAdminProduct(e,"numberinstore")} type="number" name="" value={this.state.addAproduct.numberinstore}/>
+                          <button onClick={()=> this.numberOfProducts(1)}>+</button>
                         </div>
                     </div>
                     <div className='admin-price'>
                       <p className='miniHeader'>Pris</p>
-                      <label><input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.price}/>kr</label>
+                      <label><input onChange={(e)=> this.addAdminProduct(e,"price")} type="number" name="" value={this.state.addAproduct.price}/>kr</label>
                     </div>
                 </div>
             </div>

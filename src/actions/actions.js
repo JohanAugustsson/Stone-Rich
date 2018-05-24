@@ -79,10 +79,9 @@ let addProduct = (obj) => ({
     obj
 })
 
-let saveChangedProduct = (obj, id) => ({
+let saveChangedProduct = (obj) => ({
     type: SAVE_CHANGED_PRODUCT,
-    obj,
-    id
+    obj
 })
 
 export {
