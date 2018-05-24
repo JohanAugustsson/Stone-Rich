@@ -84,6 +84,14 @@ let saveChangedProduct = (obj) => ({
     obj
 })
 
+let undoBasket = () => ({
+    type: UNDO_BASKET,
+})
+
+let redoBasket = () => ({
+    type: REDO_BASKET,
+})
+
 export {
   addToBasket,
   removeFromBasket,
@@ -95,5 +103,7 @@ export {
   changePage,
   removeProduct,
   addProduct,
-  saveChangedProduct
+  saveChangedProduct,
+  undoBasket,
+  redoBasket
 };

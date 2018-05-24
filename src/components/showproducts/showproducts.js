@@ -23,7 +23,7 @@ class showProducts extends Component {
     }
 
     handleClickAddToBasket = (id, products) => {
-    
+
         if (this.isProductsInStore(products, id)) {
             let action1 = addToBasket(1, id);
             let action2 = removeFromNumberInstore(1, id);
@@ -58,7 +58,6 @@ class showProducts extends Component {
 
     render() {
         const products = this.props.products;
-        console.log(this.props);
         let productList = "empty"
         if(products.length > 0)
           productList = this.makeProductUl(products);

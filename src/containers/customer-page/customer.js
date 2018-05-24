@@ -5,7 +5,7 @@ import {addToBasket} from '../../actions/actions.js';
 import {removeFromBasket} from "../../actions/actions";
 import {removeFromNumberInstore} from "../../actions/actions.js";
 import {addBackToNumberInStore} from "../../actions/actions";
-import {emptyBasket} from "../../actions/actions";
+import {emptyBasket , undoBasket , redoBasket} from "../../actions/actions";
 import HistoryContainer from "../../components/history/history";
 
 class customer extends Component {
@@ -59,7 +59,7 @@ class customer extends Component {
     }
 
     handleClickEmptyYourBasket = () =>{
-      let basket = this.props.basket;
+      let basket = this.props.basket.present;
 
       basket.forEach( product => { // lägger tillbaka alla till storen
         let action = addBackToNumberInStore(product.numberInBasket, product.id)
@@ -97,13 +97,29 @@ class customer extends Component {
         return basketList
     }
 
-    render() {
-        let chosenProducts = this.getChosenProducts(this.props.productlist, this.props.basket);
-        let totalPrice = this.getTotalPrice(this.props.productlist, this.props.basket);
+    handleClickUndoBasket = () => {
+      let action = undoBasket();
+      console.log(action);
+      this.props.dispatch(action);
+    }
 
+    handleClickRedoBasket = () => {
+      let action = redoBasket();
+      console.log(action);
+      this.props.dispatch(action);
+    }
+
+    render() {
+        let chosenProducts = this.getChosenProducts(this.props.productlist, this.props.basket.present);
+        let totalPrice = this.getTotalPrice(this.props.productlist, this.props.basket.present);
         return (<div className="customer-container">
+
             <h1>Din Varukorg</h1>
             <div className='chosen-products-container'>
+              <div className="undoRedo">
+                <button disabled = {this.props.basket.past.length === 0 } onClick = {this.handleClickUndoBasket}>undo <i class="fa fa-undo" aria-hidden="true"></i></button>
+                <button disabled = {this.props.basket.future.length === 0} onClick = {this.handleClickRedoBasket}>Redo <i class="fa fa-repeat" aria-hidden="true"></i></button>
+              </div>
                 <div className='product-number-sum'>
                     <p>Produkt</p>
                     <span>
@@ -131,6 +147,9 @@ class customer extends Component {
     }
 }
 let mapStateToProps = state => {
-    return {basket: state.basket.present , productlist: state.products.present}
+    return {
+      basket: state.basket ,
+      productlist: state.products.present
+    }
 }
 export default connect(mapStateToProps)(customer);

@@ -37,6 +37,29 @@
   border-bottom: 1px solid #707070;
   padding: 0 0.5rem;
 }
+
+.undoRedo{
+  display: flex;
+  margin: -18px;
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+.undoRedo button{
+  outline: none;
+  margin: 5px;
+  background-color: transparent;
+  color: black;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 2rem;
+  border : 1.3px solid transparent;
+  cursor:pointer;
+
+}
+.undoRedo button:hover{
+  border-bottom: 1.3px solid lightgrey;
+}
+
 .product-number-sum>span{
   display: flex;
   width: 40%;
