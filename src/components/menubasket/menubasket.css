@@ -1,0 +1,50 @@
+.menubasket-container{
+  width: 200px;
+  padding: 0.5rem;
+  border: 3px solid green;
+  border-radius: 5px;
+  color: green;
+  background-color: #fff;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+
+}
+.menubasket-container:hover{
+  cursor: pointer;
+  background-color: green;
+  color: #fff;
+
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.menubasket-container>p:first-child{
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+}
+.menubasket-container>p:last-child{
+  padding-left: 1rem;
+
+
+}
+
+.menubasket-logo-container{
+  width: auto;
+  display:flex;
+  align-items: center;
+}
+/* .menubasket-container div:nth-child(2){
+  display: flex;
+  justify-content:center;
+} */

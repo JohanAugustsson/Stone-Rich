@@ -1,21 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import productlist from "./mocks/products.json";
+import Products from "./containers/products/products";
+import Customer from "./containers/customer-page/customer";
+import Menu from "./components/menu/menu";
+import Admin from "./containers/admin/admin";
+import Login from "./components/login/login";
+import { connect } from 'react-redux';
 
 class App extends Component {
+
   render() {
+
+    let showPage;
+    switch (this.props.currentPage) {
+      case "basket" :
+        showPage = (<Customer />)
+        break;
+      case "products" :
+        showPage = ( <Products /> )
+        break;
+      case "admin" :
+        showPage = ( <Admin/> )
+        break;
+      default:
+        showPage =  ( <Products /> )
+    }
+
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Menu/>
+        { showPage }
+        {this.props.showLogin ? <Login />: "" }
       </div>
     );
   }
 }
 
-export default App;
+
+let mapStateToProps = (state) => {
+  return {
+    showLogin: state.user.showLogin,
+    currentPage : state.currentPage
+  }
+}
+
+export default connect(mapStateToProps)(App);

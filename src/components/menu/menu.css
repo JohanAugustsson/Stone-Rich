@@ -1,0 +1,52 @@
+.menu-container{
+  position: sticky;
+  width: 100%;
+  top: 0px;
+  background-color: #fff;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.menu-container>*{
+  margin: 1rem;
+}
+.menubasket-adminlogin-holder{
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+.adminlogin:hover{
+  cursor: pointer;
+}
+.menubasket-adminlogin-holder>p{
+  margin-left: 2rem;
+}
+
+.menu-container>img{
+    width: 100px
+}
+
+.menu-container .btnMenu{
+  background-color: transparent;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #232323;
+  font-size: 1.2em;
+  margin-right: 100px;
+}
+
+.menu-container .btnMenu:focus {
+  outline: none;
+}
+.menu-container .btnMenu:hover {
+  cursor: pointer;
+}
