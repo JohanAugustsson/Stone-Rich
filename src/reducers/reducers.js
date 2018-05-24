@@ -108,12 +108,36 @@ const customerReducer = (state = {past : [], present : [], future : []}, action)
   if(action){
     var stateToReturn, index;
     var newObj = {
-      id: action.id,
-      numberInBasket: action.nb
+      id : action.id,
+      numberInBasket : action.nb,
+      type : action.type
     }
   }
 
   switch (action.type) {
+
+    case UNDO_BASKET :
+
+    const previous = state.past[state.past.length - 1]
+    const newPast =  state.past.slice(0, state.past.length - 1)
+    return {
+      past: newPast,
+      present: previous,
+      future: [state.present, ...state.future]
+    }
+
+
+    case REDO_BASKET :
+
+    const next = state.future[0]
+    const newFuture = state.future.slice(1)
+    return {
+      past: [...state.past, state.present],
+      present: next,
+      future: newFuture
+    }
+
+
 
 
     case ADD_TO_BASKET: //ok
@@ -174,7 +198,6 @@ const userReducer = (state = {}, action) => {
         "showLogin": !state.showLogin
       }
 
-      break;
     case IS_ADMIN:
       let isAdmin = action.isAdmin
       return { ...state,
@@ -197,13 +220,18 @@ const pageReducer = (state="products", action) => {
 }
 
 
+const historyActionsReducer = (state=[], action) => {
+  return [...state, action.type ]
+}
+
 
 
 const rootReducer = combineReducers({
   basket: customerReducer,
   products: productReducer,
   user: userReducer,
-  currentPage: pageReducer
+  currentPage: pageReducer,
+  historyActions: historyActionsReducer
 });
 
 
