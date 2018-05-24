@@ -38,8 +38,12 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
       }
 
     case ADD_PRODUCT:
-      console.log(state);
-      break;
+      return{
+        past : [...state.past, state.present],
+        present : [...state.present, action.obj],
+        future : []
+      }
+
     case REMOVE_FROM_NUMBERINSTORE:
 
       index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns

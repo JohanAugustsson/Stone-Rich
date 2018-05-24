@@ -23,7 +23,7 @@ class showProducts extends Component {
     }
 
     handleClickAddToBasket = (id, products) => {
-
+    
         if (this.isProductsInStore(products, id)) {
             let action1 = addToBasket(1, id);
             let action2 = removeFromNumberInstore(1, id);
