@@ -53,6 +53,7 @@
   border: none;
   padding: 0.5rem 2rem;
   border : 1.3px solid transparent;
+  cursor:pointer;
 
 }
 .undoRedo button:hover{
