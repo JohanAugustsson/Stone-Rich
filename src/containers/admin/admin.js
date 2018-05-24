@@ -66,6 +66,13 @@ class admin extends Component {
     }
   }
 
+  addAdminProduct = (e, type) => {
+      let obj = this.state.addAproduct;
+      obj[type] = e.target.value;
+      this.setState({
+          addAproduct: obj
+      })
+  }
 
 
 
@@ -169,29 +176,33 @@ class admin extends Component {
                   <div className='img-name-instore mobile'>
                       <div className='changeUrl'>
                       <p className='miniHeader'>Bild URL</p>
-                        <div className='img-container'>
-                          <img src={(this.state.addAproduct.img)? this.state.addAproduct.img:'img/placeholder.png'}  alt='product bild' title='ädelsten'/>
-                        </div>
-                        <input onChange={(e)=>console.log(e.target.value)} type="text" name="" value={this.state.addAproduct.img}/>
+                          <div className='img-container'>
+                              <img src={(
+                                      this.state.addAproduct.img)
+                                      ? this.state.addAproduct.img
+                                      : 'img/placeholder.png'} alt='product bild' title='ädelsten'/>
+                          </div>
+                          <input onChange={(e) => this.addAdminProduct(e, "img")} type="text" name="" value={this.state.addAproduct.img}/>
                       </div>
                       <div className='textAreaContainer'>
-                        <p className='miniHeader'>Namn</p>
-                        <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.name}/>
-                        <p className='miniHeader'>Produkt info</p>
-                        <textarea onChange={(e)=>console.log(e.target.value)} name="name" rows="8" cols="80"></textarea>
+                          <p className='miniHeader'>Namn</p>
+                          <input onChange={(e) => this.addAdminProduct(e, "name")} type="text" name="" value={this.state.addAproduct.name}/>
+                          <p className='miniHeader'>Produkt info</p>
+                          <textarea onChange={(e) => console.log(e.target.value)} name="name" rows="8" cols="80"></textarea>
                       </div>
                   </div>
                   <div className='admin-amount'>
                       <p className='miniHeader'>Antal på lager</p>
                       <div className='admin-amount-update'>
-                        <button onClick={()=>console.log('minus knapp')}>-</button>
-                        <input onChange={(e)=>console.log(e.target.value)} type="text" name="" value="1"/>
-                        <button onClick={()=>console.log('plus knapp')}>+</button>
-                      </div>
-                  </div>
-                  <div className='admin-price'>
-                    <p className='miniHeader'>Pris</p>
-                    <label><input onChange={(e)=>console.log(e.target)} type="text" name="" value="12"/>kr</label>
+
+                      <button onClick={() => console.log('minus knapp')}>-</button>
+                            <input onChange={(e) => this.addAdminProduct(e, "layer")} type="text" name="" value="1"/>
+                            <button onClick={() => console.log('plus knapp')}>+</button>
+                        </div>
+                    </div>
+                    <div className='admin-price'>
+                        <p className='miniHeader'>Pris</p>
+                        <label><input onChange={(e) => this.addAdminProduct(e, "price")} type="text" name="" value="12"/>kr</label>
                   </div>
               </div>
 
