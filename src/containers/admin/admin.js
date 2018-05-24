@@ -33,9 +33,6 @@ class admin extends Component {
     this.props.dispatch(removeProduct(id));
   }
 
-  addAdminProduct = (obj) =>{
-    console.log(obj);
-  }
 
   switchToChange=(id)=>{
     this.setState({edit:true, editId:id});
@@ -47,7 +44,7 @@ class admin extends Component {
     let index = this.state.editId;
     let currentIndex = this.state.addAproduct.id
 
-    if(index !== 'undefined' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
+    if(index !== '' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
       let productList = this.props.products
       let productToEdit = productList[index];
 
@@ -72,6 +69,33 @@ class admin extends Component {
       this.setState({
           addAproduct: obj
       })
+  }
+
+  increaseNumberInStore = (info) =>{
+    if(info === "increase")
+    this.setState({addAproduct : {...this.state.addAproduct,"numberinstore" : this.state.addAproduct.numberinstore + 1}})
+    else {
+      this.setState({addAproduct : {...this.state.addAproduct,"numberinstore" : this.state.addAproduct.numberinstore - 1}})
+    }
+  }
+
+
+  submitToStore = (obj) =>{
+
+    let d = new Date();
+    let id = d.getTime();
+
+    let newProduct = {
+      id ,
+      name : obj.name,
+      img : obj.img,
+      numberinstore : obj.numberinstore,
+      productinfo : obj.productinfo,
+      price : obj.price
+    }
+
+    let action = addProduct(newProduct);
+    this.props.dispatch(action);
   }
 
 
@@ -164,6 +188,7 @@ class admin extends Component {
 
   render(){
 
+
     let allProducts = this.props.products;
     let all = this.getAllProducts(allProducts);
     let qurrentPage;
@@ -188,26 +213,27 @@ class admin extends Component {
                           <p className='miniHeader'>Namn</p>
                           <input onChange={(e) => this.addAdminProduct(e, "name")} type="text" name="" value={this.state.addAproduct.name}/>
                           <p className='miniHeader'>Produkt info</p>
-                          <textarea onChange={(e) => console.log(e.target.value)} name="name" rows="8" cols="80"></textarea>
+                          <textarea onChange={(e) => this.addAdminProduct(e, "productinfo")} name="name" rows="8" cols="80" value={this.state.addAproduct.productinfo}></textarea>
                       </div>
                   </div>
                   <div className='admin-amount'>
                       <p className='miniHeader'>Antal på lager</p>
                       <div className='admin-amount-update'>
 
-                      <button onClick={() => console.log('minus knapp')}>-</button>
-                            <input onChange={(e) => this.addAdminProduct(e, "layer")} type="text" name="" value="1"/>
-                            <button onClick={() => console.log('plus knapp')}>+</button>
+                      <button onClick={() => this.increaseNumberInStore("decrease")}>-</button>
+                            <input onChange={(e) => this.addAdminProduct(e, "numberinstore")} type="text" name="" value={this.state.addAproduct.numberinstore}/>
+                            <button onClick={() => this.increaseNumberInStore("increase")}>+</button>
                         </div>
                     </div>
                     <div className='admin-price'>
                         <p className='miniHeader'>Pris</p>
-                        <label><input onChange={(e) => this.addAdminProduct(e, "price")} type="text" name="" value="12"/>kr</label>
+                        <label><input onChange={(e) => this.addAdminProduct(e, "price")} type="text" name="" value={this.state.addAproduct.price}/>kr</label>
                   </div>
               </div>
 
               <div className='add-product-conatainer'>
-                <button>Lägg till produkt</button>
+                <button onClick={() =>
+                    this.submitToStore(this.state.addAproduct)}>Lägg till produkt</button>
               </div>
           </div>);
     }
