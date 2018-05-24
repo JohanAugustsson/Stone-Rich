@@ -11,7 +11,8 @@ import {
   REMOVE_PRODUCT,
   ADD_PRODUCT,
   UNDO_BASKET,
-  REDO_BASKET
+  REDO_BASKET,
+  SAVE_CHANGED_PRODUCT
 } from '../actions/constants.js'
 
 
@@ -37,8 +38,12 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
       }
 
     case ADD_PRODUCT:
-      console.log(state);
-      break;
+      return{
+        past : [...state.past, state.present],
+        present : [...state.present, action.obj],
+        future : []
+      }
+
     case REMOVE_FROM_NUMBERINSTORE:
 
       index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
@@ -74,6 +79,25 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
         future : []
 
       }
+
+    case SAVE_CHANGED_PRODUCT:
+      console.log("save product reducer");
+      index = state.present.findIndex(item => item.id === action.obj.id); //kontrollerar om det produkten redan finns
+      if (index >= 0) {
+        stateToReturn = [...state.present]
+        stateToReturn[index] = action.obj
+      } else {
+        console.log("hittades ej");
+        return state; // produkten hittades ej
+      }
+
+      return {
+        past : [...state.past, state.present ],
+        present :  stateToReturn ,
+        future : []
+
+      }
+
 
     default:
       return state;
