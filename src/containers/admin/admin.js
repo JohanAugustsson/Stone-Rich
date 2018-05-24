@@ -190,7 +190,7 @@ class admin extends Component {
 }// class admin
 
 let mapStateToProps=(state)=>{
-  return {products: state.products} // ger mig initialstate används längre upp som props
+  return {products: state.products.present} // ger mig initialstate används längre upp som props
 }
 
 

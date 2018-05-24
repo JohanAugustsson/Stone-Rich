@@ -9,7 +9,9 @@ import {
   CHANGE_PAGE,
   REMOVE_PRODUCT,
   ADD_PRODUCT,
-  SAVE_CHANGED_PRODUCT
+  SAVE_CHANGED_PRODUCT,
+  UNDO_BASKET,
+  REDO_BASKET
 } from './constants.js'
 
 let addToBasket = (nb, id) => {

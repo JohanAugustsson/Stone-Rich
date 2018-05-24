@@ -9,92 +9,133 @@ import {
   EMPTY_BASKET,
   CHANGE_PAGE,
   REMOVE_PRODUCT,
-  ADD_PRODUCT
+  ADD_PRODUCT,
+  UNDO_BASKET,
+  REDO_BASKET
 } from '../actions/constants.js'
 
 
-const productReducer = (state = [], action) => {
+
+const productReducer = (state = {past : [], present : [], future : []} , action) => {
+  if(action){
+    var stateToReturn, index;
+    var newObj = {
+      id: action.id,
+      nb: action.nb
+    }
+  }
 
   switch (action.type) {
+
     case REMOVE_PRODUCT:
-      let newState = state.filter((x)=> x.id!==action.id);
-      return newState;
+      let newState = state.present.filter((x)=> x.id!==action.id);
+      return {
+        past : [...state.past, state.present ],
+        present :  newState ,
+        future : []
+
+      }
+
     case ADD_PRODUCT:
       console.log(state);
       break;
     case REMOVE_FROM_NUMBERINSTORE:
-      let newObj = {
-        id: action.id,
-        nb: action.nb
+
+      index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
+      if (index >= 0) {
+        let numbers = state.present[index].numberinstore - newObj.nb
+        stateToReturn = [...state.present]
+        stateToReturn[index].numberinstore = numbers
+      }else {
+        stateToReturn = [...state.present , newObj]
       }
 
-      let index = state.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
-      if (index >= 0) {
-        let numbers = state[index].numberinstore - newObj.nb
-        let newState = [...state];
-        newState[index].numberinstore = numbers
-        return newState;
+      return {
+        past : [...state.past, state.present ],
+        present :  stateToReturn ,
+        future : []
+
       }
-      return [...state, newObj];
 
     case ADD_BACK_TO_NUMBERINSTORE:
-      let obj = {
-        id: action.id,
-        nb: action.nb
+
+      index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
+      if (index >= 0) {
+        let numbers = state.present[index].numberinstore + newObj.nb
+        stateToReturn = [...state.present]
+        stateToReturn[index].numberinstore = numbers
+      } else {
+        stateToReturn = [...state.present , newObj];
       }
 
-      let theIndex = state.findIndex(item => item.id === obj.id); //kontrollerar om det produkten redan finns
-      if (theIndex >= 0) {
-        let numbers = state[theIndex].numberinstore + obj.nb
-        let newState = [...state];
-        newState[theIndex].numberinstore = numbers
-        return newState;
+      return {
+        past : [...state.past, state.present ],
+        present :  stateToReturn ,
+        future : []
+
       }
-      return [...state, obj];
+
     default:
       return state;
   }
 }
 
-const customerReducer = (state = [], action) => {
+const customerReducer = (state = {past : [], present : [], future : []}, action) => {
+  if(action){
+    var stateToReturn, index;
+    var newObj = {
+      id: action.id,
+      numberInBasket: action.nb
+    }
+  }
+
   switch (action.type) {
 
-    case ADD_TO_BASKET:
-      let newObj = {
-        id: action.id,
-        numberInBasket: action.nb
-      }
 
-      let index = state.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
+    case ADD_TO_BASKET: //ok
+
+      index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
+
       if (index >= 0) {
-        let numbers = state[index].numberInBasket + 1
-        let newState = [...state];
-        newState[index].numberInBasket = numbers
-        return newState;
+        let numbers = state.present[index].numberInBasket + 1
+        stateToReturn =  [...state.present]
+        stateToReturn[index] = {...state.present[index]} // gör en djup kopiering av valt element i arrayen
+        stateToReturn[index].numberInBasket = numbers
+      }else {
+        stateToReturn =  [...state.present , newObj];
       }
 
-      return [...state, newObj];
+      return {
+        past : [...state.past, state.present ],
+        present : stateToReturn,
+        future : []
+      }
+
+
     case REMOVE_FROM_BASKET:
 
-      let obj = {
-        id: action.id,
-        numberInBasket: action.nb
+      index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
+      if (index >= 0) {
+        let numbers = state.present[index].numberInBasket - 1
+        stateToReturn =  [...state.present]
+        stateToReturn[index].numberInBasket = numbers
+      } else {
+        stateToReturn =  [...state.present ,  newObj];
       }
 
-      let theIndex = state.findIndex(item => item.id === obj.id); //kontrollerar om det produkten redan finns
-      if (theIndex >= 0) {
-        let numbers = state[theIndex].numberInBasket - 1
-        let newState = [...state];
-        newState[theIndex].numberInBasket = numbers
-        return newState;
+      return {
+        past : [...state.past, state.present ],
+        present : stateToReturn,
+        future : []
       }
-
-      return [...state, obj];
 
     case EMPTY_BASKET:
-      let empty = [];
-      state = empty;
-      return state;
+
+      return {
+        past : [...state.past, state.present ],
+        present : [],
+        future : []
+      }
 
     default:
       return state;
@@ -138,7 +179,7 @@ const rootReducer = combineReducers({
   basket: customerReducer,
   products: productReducer,
   user: userReducer,
-  currentPage: pageReducer,
+  currentPage: pageReducer
 });
 
 
