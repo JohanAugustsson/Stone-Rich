@@ -22,7 +22,8 @@ class admin extends Component {
             name: '',
             img: '',
             numberinstore: 1,
-            productinfo:''
+            productinfo:'',
+            price: ''
           }
         }
   }
@@ -40,11 +41,43 @@ class admin extends Component {
     this.setState({edit:true, editId:id});
   }
 
+
+  componentDidUpdate(){
+    // uppdataterar staten med produkt info när vi klickat på ändra
+    let index = this.state.editId;
+    let currentIndex = this.state.addAproduct.id
+
+    if(index !== 'undefined' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
+      let productList = this.props.products
+      let productToEdit = productList[index];
+
+        let editObj = {
+          id: productToEdit.id,
+          name: productToEdit.name,
+          img:  productToEdit.img,
+          numberinstore: productToEdit.numberinstore,
+          productinfo: productToEdit.productinfo,
+          price : productToEdit.price
+        }
+
+      this.setState({
+        addAproduct : editObj
+      })
+    }
+  }
+
+
+
+
+
+
   getAllProducts=(allProducts, qurrentId='')=> {
     let list = allProducts;
 
     console.log(list);
+    let firstTime = true;
     let chosenProducts = list.map(obj=>{
+
         return ((this.state.edit && this.state.editId===obj.id) ?
         <div key={obj.id} className='admin-article-object'>
                 <div className='change-content'>
@@ -60,13 +93,13 @@ class admin extends Component {
                           <div className='img-container'>
                             <img src={(obj.img)? obj.img:'img/placeholder.png'} alt='product bild' title='ädelsten'/>
                           </div>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.img}/>
+                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.img}/>
                         </div>
                         <div className='textAreaContainer'>
                           <p className='miniHeader'>Namn</p>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.name}/>
+                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.name}/>
                           <p className='miniHeader'>Produkt info</p>
-                          <textarea onChange={(e)=>console.log(e.target)} value={obj.productinfo} name="name" rows="8" cols="80"></textarea>
+                          <textarea onChange={(e)=>console.log(e.target)} value={this.state.addAproduct.productinfo} name="name" rows="8" cols="80"></textarea>
                           {(obj.numberinstore>0) ? <p className='isInStore'>Finns i lager</p>:<p className='notInStore'>slutsåld</p>}
                         </div>
                     </div>
@@ -74,13 +107,13 @@ class admin extends Component {
                         <p className='miniHeader'>Antal på lager</p>
                         <div className='admin-amount-update'>
                           <button onClick={()=>console.log('minus knapp')}>-</button>
-                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.numberinstore}/>
+                          <input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.numberinstore}/>
                           <button onClick={()=>console.log('plus knapp')}>+</button>
                         </div>
                     </div>
                     <div className='admin-price'>
                       <p className='miniHeader'>Pris</p>
-                      <label><input onChange={(e)=>console.log(e.target)} type="text" name="" value={obj.price}/>kr</label>
+                      <label><input onChange={(e)=>console.log(e.target)} type="text" name="" value={this.state.addAproduct.price}/>kr</label>
                     </div>
                 </div>
             </div>
