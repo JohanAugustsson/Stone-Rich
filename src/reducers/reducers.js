@@ -8,6 +8,8 @@ import {
   ADD_BACK_TO_NUMBERINSTORE,
   EMPTY_BASKET,
   CHANGE_PAGE,
+  REMOVE_PRODUCT,
+  ADD_PRODUCT,
   UNDO_BASKET,
   REDO_BASKET
 } from '../actions/constants.js'
@@ -24,7 +26,20 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
   }
 
   switch (action.type) {
-    case REMOVE_FROM_NUMBERINSTORE: //ok
+
+    case REMOVE_PRODUCT:
+      let newState = state.present.filter((x)=> x.id!==action.id);
+      return {
+        past : [...state.past, state.present ],
+        present :  newState ,
+        future : []
+
+      }
+
+    case ADD_PRODUCT:
+      console.log(state);
+      break;
+    case REMOVE_FROM_NUMBERINSTORE:
 
       index = state.present.findIndex(item => item.id === newObj.id); //kontrollerar om det produkten redan finns
       if (index >= 0) {
@@ -156,9 +171,6 @@ const pageReducer = (state="products", action) => {
       return state;
   }
 }
-
-
-
 
 
 

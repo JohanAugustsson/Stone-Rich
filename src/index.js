@@ -14,7 +14,7 @@ const initialState = {
     future:[]
   },
   user : {
-    password:"ADMIN",
+    password:"",
     isAdmin : false,
     showLogin: false
   },

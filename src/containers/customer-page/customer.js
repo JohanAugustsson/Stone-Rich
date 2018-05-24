@@ -90,7 +90,8 @@ class customer extends Component {
                     <input type="text" onChange={() => console.log("")} name="" value={product.numberInBasket} placeholder='1'/>
                     <button onClick={() => this.handleClickBasket(product.id, this.props.productlist, true)} disabled={!productInfo.numberinstore}>+</button>
                 </div>
-                <p>{this.getTotalProductPrice(product.numberInBasket, productInfo.price)}</p>
+                <p className='smallerItems'>{this.getTotalProductPrice(product.numberInBasket, productInfo.price)}</p>
+                <button className='customer-remove'>&times;</button>
             </div>)
         });
         return basketList
