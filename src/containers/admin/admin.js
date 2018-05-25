@@ -18,7 +18,7 @@ class admin extends Component {
           edit:false,
           editId:'',
           addAproduct:{
-            id: 100,
+            id: '',
             name: '',
             img: '',
             numberinstore: 1,
@@ -29,37 +29,39 @@ class admin extends Component {
   }
 
   removeAdminProduct = (id)=>{
-    this.props.dispatch(removeProduct(id));
+    let editObj = {
+      id: "",
+      name: "",
+      img:  "",
+      numberinstore: "",
+      productinfo: "",
+      price : ""
+    }
+    this.setState({addAproduct : editObj, editId :"" , edit: false}, () => {
+      this.props.dispatch(removeProduct(id));
+    })
   }
 
 
   switchToChange=(id)=>{
-    this.setState({edit:true, editId:id});
-  }
-
-
-  componentDidUpdate(){
-    // uppdataterar staten med produkt info när vi klickat på ändra
-    let index = this.state.editId;
-    let currentIndex = this.state.addAproduct.id
-
-    if(index !== '' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
-      let productList = this.props.products.present
-      let productToEdit = productList[index];
-
-        let editObj = {
-          id: productToEdit.id,
-          name: productToEdit.name,
-          img:  productToEdit.img,
-          numberinstore: productToEdit.numberinstore,
-          productinfo: productToEdit.productinfo,
-          price : productToEdit.price
-        }
-
-      this.setState({
-        addAproduct : editObj
-      })
+    let productList = this.props.products.present
+    let productToEdit = productList.filter(item => item.id === id);
+    productToEdit = productToEdit[0];
+    let editObj = {
+      id: productToEdit.id,
+      name: productToEdit.name,
+      img:  productToEdit.img,
+      numberinstore: productToEdit.numberinstore,
+      productinfo: productToEdit.productinfo,
+      price : productToEdit.price
     }
+
+     this.setState({
+       addAproduct : editObj,
+       edit:true,
+       editId:id
+     })
+
   }
 
   validateKeyPress = (e,type) => {
