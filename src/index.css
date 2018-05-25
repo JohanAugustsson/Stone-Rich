@@ -20,3 +20,25 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+.undoRedo{
+  display: flex;
+  margin: -18px;
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+.undoRedo button{
+  outline: none;
+  margin: 5px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 0.5rem 2rem;
+  border-bottom: 1.3px solid transparent;
+  cursor:pointer;
+
+}
+.undoRedo button:hover{
+  border-bottom: 1.3px solid lightgrey;
+}

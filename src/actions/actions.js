@@ -11,7 +11,9 @@ import {
   ADD_PRODUCT,
   SAVE_CHANGED_PRODUCT,
   UNDO_BASKET,
-  REDO_BASKET
+  REDO_BASKET,
+  UNDO_PRODUCT,
+  REDO_PRODUCT
 } from './constants.js'
 
 let addToBasket = (nb, id) => {
@@ -85,11 +87,19 @@ let saveChangedProduct = (obj) => ({
 })
 
 let undoBasket = () => ({
-    type: UNDO_BASKET,
+    type: UNDO_BASKET
 })
 
 let redoBasket = () => ({
-    type: REDO_BASKET,
+    type: REDO_BASKET
+})
+
+let undoProduct = () => ({
+  type : UNDO_PRODUCT
+})
+
+let redoProduct = () => ({
+  type : REDO_PRODUCT
 })
 
 export {
@@ -105,5 +115,7 @@ export {
   addProduct,
   saveChangedProduct,
   undoBasket,
-  redoBasket
+  redoBasket,
+  undoProduct,
+  redoProduct
 };

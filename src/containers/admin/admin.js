@@ -3,7 +3,7 @@ import "./admin.css";
 import 'font-awesome/css/font-awesome.min.css';
 import {connect} from "react-redux";
 import {removeProduct} from '../../actions/actions.js';
-import {addProduct, saveChangedProduct } from '../../actions/actions.js'
+import {addProduct, saveChangedProduct, undoProduct, redoProduct } from '../../actions/actions.js'
 
 
 // import productlist from "../../mocks/products.json"; // endast till testning ska byttas till state props
@@ -29,7 +29,6 @@ class admin extends Component {
   }
 
   removeAdminProduct = (id)=>{
-    console.log(removeProduct(id));
     this.props.dispatch(removeProduct(id));
   }
 
@@ -45,7 +44,7 @@ class admin extends Component {
     let currentIndex = this.state.addAproduct.id
 
     if(index !== '' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
-      let productList = this.props.products
+      let productList = this.props.products.present
       let productToEdit = productList[index];
 
         let editObj = {
@@ -63,12 +62,32 @@ class admin extends Component {
     }
   }
 
+  validateKeyPress = (e,type) => {
+    let checkKey = e.keyCode;
+    let limitMax = 58; //9
+    let limitMin = 48; //0
+    let keyReturn = 8; // radera knapp
+    let keyDelete = 46; // delte knapp
+
+    if( (checkKey >= limitMin && checkKey <= limitMax ) || (checkKey === keyReturn) || (checkKey === keyDelete) ){
+
+
+    }else {
+      e.preventDefault();
+    }
+  }
+
   addAdminProduct = (e, type) => {
-      let obj = this.state.addAproduct;
-      obj[type] = e.target.value;
-      this.setState({
-          addAproduct: obj
-      })
+
+    let obj = this.state.addAproduct;
+    obj[type] = e.target.value;
+    if(e.target.value  === ""){
+      obj[type] = 0;
+    }
+
+    this.setState({
+        addAproduct: obj
+    })
   }
 
   submitToStore = (obj) =>{
@@ -112,7 +131,7 @@ class admin extends Component {
   getAllProducts=(allProducts, qurrentId='')=> {
     let list = allProducts;
 
-    
+
 
     let chosenProducts = list.map(obj=>{
 
@@ -145,13 +164,13 @@ class admin extends Component {
                         <p className='miniHeader'>Antal på lager</p>
                         <div className='admin-amount-update'>
                           <button onClick={()=> this.numberOfProducts(-1)}>-</button>
-                          <input onChange={(e)=> this.addAdminProduct(e,"numberinstore")} type="number" name="" value={this.state.addAproduct.numberinstore}/>
+                          <input onChange={(e)=>this.addAdminProduct(e,"numberinstore")} onKeyDown = { (e) => this.validateKeyPress(e) } type="number" name="" value={this.state.addAproduct.numberinstore}/>
                           <button onClick={()=> this.numberOfProducts(1)}>+</button>
                         </div>
                     </div>
                     <div className='admin-price'>
                       <p className='miniHeader'>Pris</p>
-                      <label><input onChange={(e)=> this.addAdminProduct(e,"price")} type="number" name="" value={this.state.addAproduct.price}/>kr</label>
+                      <label><input onChange={(e)=> this.addAdminProduct(e,"price")}  onKeyDown = { (e) => this.validateKeyPress(e)} type="number" name="" value={this.state.addAproduct.price}/>kr</label>
                     </div>
                 </div>
             </div>
@@ -193,10 +212,21 @@ class admin extends Component {
     this.setState({currentPage: page});
   }
 
+
+  handleClickUndoProducts = () => {
+    let action = undoProduct();
+    this.props.dispatch(action);
+  }
+
+  handleClickRedoProducts = () => {
+    let action = redoProduct();
+    this.props.dispatch(action);
+  }
+
   render(){
 
 
-    let allProducts = this.props.products;
+    let allProducts = this.props.products.present;
     let all = this.getAllProducts(allProducts);
     let qurrentPage;
     if (this.state.currentPage==='allProducts') {
@@ -228,13 +258,13 @@ class admin extends Component {
                       <div className='admin-amount-update'>
 
                       <button onClick={() => this.numberOfProducts(-1)}>-</button>
-                            <input onChange={(e) => this.addAdminProduct(e, "numberinstore")} type="text" name="" value={this.state.addAproduct.numberinstore}/>
+                            <input onChange={(e) => this.addAdminProduct(e, "numberinstore")} onKeyDown = { (e) => this.validateKeyPress(e)} type="text" name="" value={this.state.addAproduct.numberinstore}/>
                             <button onClick={() => this.numberOfProducts(1)}>+</button>
                         </div>
                     </div>
                     <div className='admin-price'>
                         <p className='miniHeader'>Pris</p>
-                        <label><input onChange={(e) => this.addAdminProduct(e, "price")} type="text" name="" value={this.state.addAproduct.price}/>kr</label>
+                        <label><input onChange={(e) => this.addAdminProduct(e, "price")} onKeyDown = { (e) => this.validateKeyPress(e) } type="text" name="" value={this.state.addAproduct.price}/>kr</label>
                   </div>
               </div>
 
@@ -247,6 +277,7 @@ class admin extends Component {
 
 
 
+
     return (<div className="admin-container">
               {(this.state.currentPage==='allProducts')?<h1>Lager</h1>: <h1>Lägg till produkt</h1>}
                 <div className='admin-button-container'>
@@ -255,10 +286,14 @@ class admin extends Component {
                 </div>
 
                 <div className='admin-products-container'>
+                  <div className="undoRedo">
+                    <button disabled = {!this.props.products.past.length > 0 } onClick = {this.handleClickUndoProducts}>undo <i className ="fa fa-undo" aria-hidden="true"></i></button>
+                    <button disabled = {!this.props.products.future.length > 0} onClick = {this.handleClickRedoProducts}>Redo <i className ="fa fa-repeat" aria-hidden="true"></i></button>
+                  </div>
+
                    <div className='admin-instore'>
                       {(this.state.currentPage==='allProducts')?<p>Produkter på lager</p>: <p>Lägg till produkt</p>}
                     </div>
-
                       {qurrentPage}
 
               </div>
@@ -267,7 +302,10 @@ class admin extends Component {
 }// class admin
 
 let mapStateToProps=(state)=>{
-  return {products: state.products.present} // ger mig initialstate används längre upp som props
+  return {
+    products: state.products
+
+  } // ger mig initialstate används längre upp som props
 }
 
 
