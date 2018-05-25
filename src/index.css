@@ -6,10 +6,6 @@ body, body * {
   box-sizing: border-box;
 }
 
-body {
-  height: 130vh;
-}
-
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
   color: #232323;
