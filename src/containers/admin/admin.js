@@ -43,7 +43,7 @@ class admin extends Component {
     // uppdataterar staten med produkt info när vi klickat på ändra
     let index = this.state.editId;
     let currentIndex = this.state.addAproduct.id
-    
+
     if(index !== '' && index !== currentIndex ) {  // uppdaterar endast när vald produkt ändras
       let productList = this.props.products
       let productToEdit = productList[index];
@@ -112,8 +112,8 @@ class admin extends Component {
   getAllProducts=(allProducts, qurrentId='')=> {
     let list = allProducts;
 
-    //console.log(list);
-    let firstTime = true;
+    
+
     let chosenProducts = list.map(obj=>{
 
         return ((this.state.edit && this.state.editId===obj.id) ?

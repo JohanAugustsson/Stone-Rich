@@ -8,15 +8,15 @@ class history extends Component {
     }
     render() {
       const iconColor = "color:red";
-      const testList = [{handling:"Added item",time : 13.37},{handling:"Removed item",time : 15.37}]
-      console.log(this.props.basket);
+
       let actionsHistory = this.props.historyActions;
       let actions = actionsHistory.map( (action,index) => {
         if(index < this.state.numberOfActionsToShow){
-        return(<div key = {index} className="history-action">
-        <div><p>Handling : {action}</p></div><div><p>   #{index + 1} </p></div></div>);
-        return actions;
-      }
+          return(<div key = {index} className="history-action">
+            <div><p>Handling : {action}</p></div><div><p>   #{index + 1} </p></div></div>);
+          } else {
+            return actions;
+        }
       });
         return (<div className="history-container">
             <div className="history-topdiv">

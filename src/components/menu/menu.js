@@ -1,7 +1,6 @@
 import React from "react";
 import "./menu.css";
 import MenuBasket from "../menubasket/menubasket";
-import Login from "../login/login";
 import { connect } from 'react-redux';
 import { toggleLoginMenu , isAdmin, changePage } from '../../actions/actions.js'
 

@@ -99,13 +99,11 @@ class customer extends Component {
 
     handleClickUndoBasket = () => {
       let action = undoBasket();
-      console.log(action);
       this.props.dispatch(action);
     }
 
     handleClickRedoBasket = () => {
       let action = redoBasket();
-      console.log(action);
       this.props.dispatch(action);
     }
 
@@ -117,8 +115,8 @@ class customer extends Component {
             <h1>Din Varukorg</h1>
             <div className='chosen-products-container'>
               <div className="undoRedo">
-                <button disabled = {this.props.basket.past.length === 0 } onClick = {this.handleClickUndoBasket}>undo <i class="fa fa-undo" aria-hidden="true"></i></button>
-                <button disabled = {this.props.basket.future.length === 0} onClick = {this.handleClickRedoBasket}>Redo <i class="fa fa-repeat" aria-hidden="true"></i></button>
+                <button disabled = {this.props.basket.past.length === 0 } onClick = {this.handleClickUndoBasket}>undo <i className ="fa fa-undo" aria-hidden="true"></i></button>
+                <button disabled = {this.props.basket.future.length === 0} onClick = {this.handleClickRedoBasket}>Redo <i className ="fa fa-repeat" aria-hidden="true"></i></button>
               </div>
                 <div className='product-number-sum'>
                     <p>Produkt</p>

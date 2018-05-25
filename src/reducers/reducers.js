@@ -81,7 +81,6 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
       }
 
     case SAVE_CHANGED_PRODUCT:
-      console.log("save product reducer");
       index = state.present.findIndex(item => item.id === action.obj.id); //kontrollerar om det produkten redan finns
       if (index >= 0) {
         stateToReturn = [...state.present]
@@ -206,14 +205,14 @@ const userReducer = (state = {}, action) => {
     default:
       return state;
   }
-  return state;
+
 }
 
 const pageReducer = (state="products", action) => {
   switch (action.type) {
     case CHANGE_PAGE :
       return action.currentPage;
-      break;
+
     default:
       return state;
   }

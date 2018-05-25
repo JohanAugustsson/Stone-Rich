@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import "./products.css";
 import Showproducts from "../../components/showproducts/showproducts";
 import productlist from "../../mocks/products.json";
