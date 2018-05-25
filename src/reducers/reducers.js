@@ -12,7 +12,9 @@ import {
   ADD_PRODUCT,
   UNDO_BASKET,
   REDO_BASKET,
-  SAVE_CHANGED_PRODUCT
+  SAVE_CHANGED_PRODUCT,
+  UNDO_PRODUCT,
+  REDO_PRODUCT
 } from '../actions/constants.js'
 
 
@@ -27,6 +29,28 @@ const productReducer = (state = {past : [], present : [], future : []} , action)
   }
 
   switch (action.type) {
+
+
+    case UNDO_PRODUCT :
+      const previous = state.past[state.past.length - 1]
+      const newPast =  state.past.slice(0, state.past.length - 1)
+
+      return {
+        past: newPast,
+        present: previous,
+        future: [state.present, ...state.future]
+      }
+
+
+    case REDO_PRODUCT :
+
+      const next = state.future[0]
+      const newFuture = state.future.slice(1)
+      return {
+        past: [...state.past, state.present],
+        present: next,
+        future: newFuture
+      }
 
     case REMOVE_PRODUCT:
       let newState = state.present.filter((x)=> x.id!==action.id);
