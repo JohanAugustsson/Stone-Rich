@@ -5,7 +5,7 @@ import {addToBasket} from '../../actions/actions.js';
 import {removeFromBasket} from "../../actions/actions";
 import {removeFromNumberInstore} from "../../actions/actions.js";
 import {addBackToNumberInStore} from "../../actions/actions";
-import {emptyBasket , undoBasket , redoBasket} from "../../actions/actions";
+import {emptyBasket , undoBasket , redoBasket, undoProduct, redoProduct } from "../../actions/actions";
 import HistoryContainer from "../../components/history/history";
 
 class customer extends Component {
@@ -75,7 +75,7 @@ class customer extends Component {
 
             productInfo = productInfo[0];
 
-            return (<div key={product.id} className='chosen-article-object'>
+            return (<div key={productInfo.id} className='chosen-article-object'>
                 <div className='img-name-instore'>
                     <div className='product-img-container'>
                         <img src={productInfo.img} alt='product bild' title='ädelsten'/>
@@ -100,12 +100,24 @@ class customer extends Component {
     handleClickUndoBasket = () => {
       let action = undoBasket();
       this.props.dispatch(action);
+      action = undoProduct();
+      this.props.dispatch(action);
+
     }
 
     handleClickRedoBasket = () => {
       let action = redoBasket();
       this.props.dispatch(action);
+      action = redoProduct();
+      this.props.dispatch(action);
     }
+
+
+
+
+
+
+
 
     render() {
         let chosenProducts = this.getChosenProducts(this.props.productlist, this.props.basket.present);
