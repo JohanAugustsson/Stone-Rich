@@ -18,8 +18,14 @@ class Menu extends React.Component {
 
   countProductInBasket = () => {
     let basket = this.props.basket;
+    let productList = this.props.productList;
     let count = 0;
-    basket.forEach(item => count += item.numberInBasket)
+    basket.forEach(item => {
+      let index = productList.findIndex( product => item.id === product.id); //kontrollerar om det produkten finns
+      if (index >= 0) {
+        count += item.numberInBasket
+      }
+    })
     return count;
   }
 
@@ -60,7 +66,8 @@ class Menu extends React.Component {
 let mapStateToProps = (state) => {
   return {
     basket : state.basket.present,
-    isAdmin : state.user.isAdmin
+    isAdmin : state.user.isAdmin,
+    productList : state.products.present
   }
 }
 

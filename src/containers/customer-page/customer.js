@@ -69,12 +69,16 @@ class customer extends Component {
       let actionEmpty = emptyBasket();
       this.props.dispatch(actionEmpty);
     }
+
+
     getChosenProducts = (productList, basket) => {
         let basketList = basket.map(product => {
             let productInfo = productList.filter(item => product.id === item.id);
 
             productInfo = productInfo[0];
-
+            if(!productInfo){
+              return
+            }
             return (<div key={productInfo.id} className='chosen-article-object'>
                 <div className='img-name-instore'>
                     <div className='product-img-container'>
